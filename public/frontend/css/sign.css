@@ -1,0 +1,134 @@
+form,h2{
+    padding-left: 70px;
+}
+
+.linee{
+    width: 70px;
+    height: 10px;
+    background-color: #ff7013;
+    margin-left: 70px;
+    
+}
+
+.form-control{
+    padding: 20px;
+    border-radius: 25px;
+    margin-bottom: 40px;
+    border: solid 1px black;
+}
+input[type='email'],.input[type='password'],input::placeholder{
+    font-size: 20px;
+}
+
+
+.zoom-out{
+    margin-top: -100px;
+    transform: scale(0.7);
+    
+}
+.zoom-out1{
+    margin-top: -120px;
+    transform: scale(0.77);
+    margin-left: -100px;
+
+    
+}
+
+@media (max-width:997px) {
+    .zoom-out1{
+        margin-top: 10px;
+        transform: scale(0.77);
+        margin-left: 0px;
+    
+        
+    }
+    
+}
+.forget{
+    margin-top: -25px;
+    text-align: right;
+    font-size: 19px;
+    
+}
+.p-sign{
+    font-size: 24px;
+    margin-top: 40px;
+}
+.span-sign{
+    margin-left: 10px;
+    color: #ff7013;
+    font-weight: bold;
+}
+
+/* ************ */
+/* sign up modal */
+
+.signup-1{
+    padding-left: 70px;
+}
+.row-inside{
+    width: 1350px;
+}
+
+@media (max-width:997px) {
+    .row-inside{
+        width: fit-content;
+    }
+    
+}
+
+/* end sign up model */
+
+
+/* sign up page */
+.sign-up{
+    width: 700px;
+}
+/* .pre-form{
+ 
+} */
+
+.checkbox-image {
+    display: inline-block;
+    position: relative;
+    cursor: pointer;
+    user-select: none;
+  }
+  
+  .checkbox-image input[type="radio"] {
+    display: none;
+  }
+  
+  /* .checkbox-image img {
+    width: 20px; /* Adjust the width and height as needed */
+    /* height: 20px;
+  }  */
+  
+  .checkbox-image input[type="radio"]:checked + img {
+    /* Apply styles to the checked image */
+    /* For example, you can change the image source or add a border */
+    border: 2px solid #000;
+  }
+
+  .checks p{
+    font-size: 35px;
+    font-weight: bold;
+  }
+
+  /* verify modal */
+
+
+/* join , forgetpassword */
+
+
+  .verify1{
+    width: 90%;
+    height: 110px;
+    border-radius: 10px;
+    font-size: 40px;
+    text-align: center;
+    color: black !important;
+  }
+
+/* second modal */
+ 
