@@ -25,7 +25,7 @@
                       <input type="password" value="" placeholder="Confirm Password" class="form-control" required>
 
                       <input type="checkbox" name="ch" id="" style="transform: scale(2);">
-                      <label for="" class="ms-3" style="font-size: 19px;"> I agree the terms and conditions</label>
+                      
 
 
 

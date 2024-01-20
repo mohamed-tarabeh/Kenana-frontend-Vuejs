@@ -24,17 +24,16 @@
                   <h2 class="fw-bolder mt-5 pt-2">Sign up</h2>
                   <div class="linee mb-5"></div>
 
-                  <form action="">
-                      <input type="text" value="" placeholder="Full name" required class="form-control">
-                      <input type="tel" value="" placeholder="Phone Number" class="form-control" required>
+                
+                  <input type="text" v-model="regist.fullName" placeholder="Full name" required class="form-control">
+                      <input type="tel" v-model="regist.phoneNumber"  placeholder="Phone Number" class="form-control" required>
 
-                      <input type="email" value="" placeholder="E-mail" class="form-control" required>
+                      <input type="email"  v-model="regist.email" placeholder="E-mail" class="form-control" required>
 
 
-                      <input type="password" value="" placeholder="Password" class="form-control" required>
+                      <input type="password" v-model="regist.password" placeholder="Password" class="form-control" required>
 
-                      <input type="password" value="" placeholder="Confirm Password" class="form-control" required>
-
+                      <input type="password" v-model="regist.passwordConfirm" placeholder="Confirm Password" class="form-control" required>
                       <input type="checkbox" name="ch" id="" style="transform: scale(2);">
                       <label for="" class="ms-3" style="font-size: 19px;"> I agree the terms and conditions</label>
 
@@ -47,14 +46,14 @@
                         <!-- <input type="submit" value="sign up" class="text-white p-3 rounded-5 border-0 mt-4" style="width: 100%; background-color: #ff7013; font-size: 27px;"> -->
 
 
-                          <a style="cursor: pointer;" @click="openModal('modal_join_tour');closeModal('modal_signup_2')"><button class="text-white p-3 rounded-5 border-0 mt-4" style="width: 100%; background-color: #ff7013; font-size: 27px;">Sign Up</button></a>
+                          <a style="cursor: pointer;" @click="register()"><button class="text-white p-3 rounded-5 border-0 mt-4" style="width: 100%; background-color: #ff7013; font-size: 27px;">Sign Up</button></a>
                       </div>
 
                       <div>
                           <p class="p-sign ps-5">You already have an account ? <a class="span-sign" @click="openModal('myModal_login');closeModal('modal_signup_2')" >Login</a></p>
                           <!-- data-bs-toggle="modal" data-bs-target="#firstModal" -->
                       </div>
-                  </form>
+               
               </div>
           </div>
       </div>
@@ -74,7 +73,24 @@
 
 
 <script>
+import axios from "axios";
 export default{
+  data() {
+    return {
+      // ... existing data properties ...
+      forgetpassword: { },
+      input1:"",
+      input2:"",
+      input3:"",
+      input4:"",
+      regist:{},
+      email:{
+        resetCode:''
+      },
+      login:{},
+      resetpass:{}
+    };
+  },
   name: 'ModalSignupTourComp',
 
 
@@ -95,6 +111,22 @@ methods: {
     this.closeModal('modal_signup_2');
     this.closeModal('modal_signup');
     this.closeModal('myModal_login');
+  },
+  register(){
+    axios.post('/api/v1/auth/signup',this.regist).then((res) => {
+      this.openModal('Modal_verify_signup')
+      // this.openModal('modal_join_tour')
+      this.closeModal('modal_signup_2')
+   console.log(res)
+    }).catch((el)=>{
+      this.openModal('Modal_verify_signup')
+  //  this.openModal('modal_join_tour')
+      this.closeModal('modal_signup_2')
+      console.log(el)
+      alert("please ckeck your form")
+
+    })
+
   },
   openModal(modalId) {
       const modal = document.getElementById(modalId);

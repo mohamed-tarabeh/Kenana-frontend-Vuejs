@@ -13,8 +13,8 @@
               <h2 class="fw-bolder mt-2 pt-5 display-5">Forget Password?</h2>
               <div class="linee mb-5"></div>
 
-              <form action="">
-                <input type="email" value="" placeholder="e-mail" required class="form-control">
+              
+                <input type="email" v-model="email" placeholder="e-mail" required class="form-control">
 
 
                 
@@ -26,12 +26,12 @@
 
 
                   <button class="text-white p-3 rounded-5 border-0 mt-4"
-                    style="width: 100%; background-color: #ff7013; font-size: 27px;" data-bs-toggle="modal"
-                    data-bs-target="#firstModal">Send a Code</button>
+                    style="width: 100%; background-color: #ff7013; font-size: 27px;" 
+                    >Send a Code</button>
                 </div>
 
 
-              </form>
+     
             </div>
           </div>
         </div>
@@ -77,14 +77,12 @@
                               <input type="text" name="" id="" class="verify1" v>
                             </div>
                             <!-- will be display block if the code identical to code into database -->
-                            <p class="errorMsg text-danger text-center " style="font-size: 20px; display: none;">This code dosn't match the code that was sent</p>
-
+                            <p class="errorMsg text-danger text-center " style="font-size: 20px; display: none;">This code dosn't match the code that was sent</p>                           
                             
-                            <routerLink :to="{name:'verify'}">
-                            <button class="text-white p-3 rounded-5 border-0 mt-5"
-                              style="width: 90%; background-color: #ff7013; font-size: 27px;"
+                            <button  class="text-white p-3 rounded-5 border-0 mt-5"
+                              style="width: 90%; background-color: #4e13ff; font-size: 27px;" 
                               >Verify</button>
-                            </routerLink>
+                           
                             <!-- id="openSecondModal" -->
 
                             <div>
@@ -117,12 +115,18 @@
 </template>
 
 
-<script>
+<script setup>
 
 
-export default{
- 
-};
+
+
+
+
+
+
+
+
+
 </script>
 
 <style>

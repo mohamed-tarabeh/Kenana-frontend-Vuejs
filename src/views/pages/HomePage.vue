@@ -187,16 +187,16 @@
       </div>
 
       <div class="row">
-        <div class="col-md-6 col-lg-4 card-trip">
+        <div v-for="t in trip" :key="t" class="col-md-6 col-lg-4 card-trip">
           <routerLink :to="{name:'tours'}">
           <div class="card rounded-4 overflow-hidden mb-4">
             <div class="card-header bg-transparent p-0">
 
-              <img src="frontend/imgs/alex.jpg" alt="trip" class="card-img-top  new-trip-img">
+              <img :src="t.imageCover" alt="trip" class="card-img-top  new-trip-img">
               
               <div class="new-trip-img-over d-flex container justify-content-between  w-100 ">
                 
-
+                
                 <routerLink :to="{name:'tours'}" class=" aa btn btn-success text-white rounded-pill pt-2 ">New Trips</routerLink>
                 <!-- <a class=" aa btn btn-success text-white rounded-pill ">
                   New Trips
@@ -216,15 +216,15 @@
             </div>
             <div class="card-body">
               <div class="d-flex justify-content-between">
-                <span>Pyramids -Egypt</span>
+                <span>{{ t.city }} -Egypt</span>
                 <span>
                   <!-- <img src="frontend/icons/people.svg" width="30px"></i> -->
                   <img src="frontend/icons/people.svg" width="30px">
                 </span>
               </div>
 
-              <h4>Riding Camels , See Fireworks at night</h4>
-              <span class="fw-bold">100 EGP / <small class="fw-normal">Person</small></span>
+              <h5>{{ t.description }}</h5>
+              <span class="fw-bold">{{ t.price }} EGP / <small class="fw-normal">Person</small></span>
             </div>
 
           </div>
@@ -233,64 +233,7 @@
         </div>
         <!--  -->
 
-        <div class="col-md-6 col-lg-4">
-          <div class="card rounded-4 overflow-hidden mb-4">
-            <div class="card-header bg-transparent p-0">
-
-              <img src="frontend/imgs/alex.jpg" alt="trip" class="card-img-top new-trip-img">
-              <div class="new-trip-img-over d-flex container justify-content-between  w-100 ">
-                <button class=" aa btn btn-success text-white rounded-pill ">
-                  New Trips
-                </button>
-
-                <i class="fa-regular fa-heart loc_ico p-2 rounded-circle"
-                  style=" background-color: rgba(0, 0, 0,.3);"></i>
-
-              </div>
-            </div>
-            <div class="card-body">
-              <div class="d-flex justify-content-between">
-                <span>Pyramids -Egypt</span>
-                <span><img src="frontend/icons/people.svg" width="30px"></span>
-              </div>
-
-              <h4>Riding Camels , See Fireworks at night</h4>
-              <span class="fw-bold">100 EGP / <small class="fw-normal">Person</small></span>
-            </div>
-
-          </div>
-
-        </div>
-        <!--  -->
-        <div class="col-md-6 col-lg-4 card-trip">
-          <div class="card rounded-4 overflow-hidden mb-4">
-            <div class="card-header bg-transparent p-0">
-
-              <img src="frontend/imgs/alex.jpg" alt="trip" class="card-img-top new-trip-img">
-              <div class="new-trip-img-over d-flex container justify-content-between  w-100 ">
-                <button class=" aa btn btn-success text-white rounded-pill ">
-                  New Trips
-                </button>
-
-                <i class="fa-regular fa-heart loc_ico p-2 rounded-circle"
-                  style=" background-color: rgba(0, 0, 0,.3);"></i>
-
-
-              </div>
-            </div>
-            <div class="card-body">
-              <div class="d-flex justify-content-between">
-                <span>Pyramids -Egypt</span>
-                <span><img src="frontend/icons/people.svg" width="30px"></span>
-              </div>
-
-              <h4>Riding Camels , See Fireworks at night</h4>
-              <span class="fw-bold">100 EGP / <small class="fw-normal">Person</small></span>
-            </div>
-
-          </div>
-
-        </div>
+   
       </div>
 
     </div>
@@ -313,12 +256,12 @@
      
 
       <div class="row">
-        <div class="col-md-6 col-lg-4 top-trip">
+        <div v-for="x in top_trip" :key="x"  class="col-md-6 col-lg-4 top-trip">
           <routerLink :to="{name:'tours'}">
           <div class="card rounded-4 overflow-hidden card-trip mb-4">
             <div class="card-header bg-transparent p-0">
 
-              <img src="frontend/imgs/ii.png" alt="trip" class="card-img-top new-trip-img">
+              <img :src="x.imageCover" alt="trip" class="card-img-top new-trip-img">
               <routerLink :to="{name:'tours'}">
               <div class="new-trip-img-over d-flex container justify-content-between  w-100 ">
                 <button class=" aa1 btn btn-success text-white rounded-pill ">
@@ -334,79 +277,20 @@
             </div>
             <div class="card-body">
               <div class="d-flex justify-content-between">
-                <span>Pyramids -Egypt</span>
+                <span>{{ x.city }} -Egypt</span>
                 <span><img src="frontend/icons/people.svg" width="30px"></span>
               </div>
 
-              <h4>Riding Camels , See Fireworks at night</h4>
-              <span class="fw-bold">100 EGP / <small class="fw-normal">Person</small></span>
+              <h5>{{ x.description }}</h5>
+              <span class="fw-bold">{{ x.price }} EGP / <small class="fw-normal">Person</small></span>
             </div>
 
           </div>
         </routerLink>
 
         </div>
-        <!--  -->
-
-        <div class="col-md-6 col-lg-4 top-trip">
-          <div class="card rounded-4 overflow-hidden card-trip mb-4">
-            <div class="card-header bg-transparent p-0">
-
-              <img src="frontend/imgs/ii.png" alt="trip" class="card-img-top new-trip-img">
-              <div class="new-trip-img-over d-flex container justify-content-between  w-100 ">
-                <button class=" aa1 btn btn-success text-white rounded-pill ">
-                  Top Trip
-                </button>
-
-                <i class="fa-regular fa-heart loc_ico p-2 rounded-circle"
-                  style=" background-color: rgba(0, 0, 0,.3);"></i>
-
-
-              </div>
-            </div>
-            <div class="card-body">
-              <div class="d-flex justify-content-between">
-                <span>Pyramids -Egypt</span>
-                <span><img src="frontend/icons/people.svg" width="30px"></span>
-              </div>
-
-              <h4>Riding Camels , See Fireworks at night</h4>
-              <span class="fw-bold">100 EGP / <small class="fw-normal">Person</small></span>
-            </div>
-
-          </div>
-
-        </div>
-        <!--  -->
-        <div class="col-md-6 col-lg-4 top-trip">
-          <div class="card rounded-4 overflow-hidden card-trip mb-4">
-            <div class="card-header bg-transparent p-0">
-
-              <img src="frontend/imgs/ii.png" alt="trip" class="card-img-top new-trip-img">
-              <div class="new-trip-img-over d-flex container justify-content-between  w-100 ">
-                <button class=" aa1 btn btn-success text-white rounded-pill ">
-                  Top Trip
-                </button>
-
-                <i class="fa-regular fa-heart loc_ico p-2 rounded-circle"
-                  style=" background-color: rgba(0, 0, 0,.3);"></i>
-
-
-              </div>
-            </div>
-            <div class="card-body">
-              <div class="d-flex justify-content-between">
-                <span>Pyramids -Egypt</span>
-                <span><img src="frontend/icons/people.svg" width="30px"></span>
-              </div>
-
-              <h4>Riding Camels , See Fireworks at night</h4>
-              <span class="fw-bold">100 EGP / <small class="fw-normal">Person</small></span>
-            </div>
-
-          </div>
-
-        </div>
+       
+      
       </div>
 
     </div>
@@ -451,12 +335,13 @@
         <routerLink :to="{name:'tours'}"><span>See More</span></routerLink>
       </div>
       <div class="row">
-        <div class="col-md-6 col-lg-4">
+        <div v-for="d in descount" :key="d"  class="col-md-6 col-lg-4">
+          
           <routerLink :to="{name:'tours'}">
           <div class="card rounded-4 overflow-hidden card-trip mb-4">
             <div class="card-header bg-transparent p-0">
 
-              <img src="frontend/imgs/ii.png" alt="trip" class="card-img-top new-trip-img">
+              <img :src="d.imageCover" alt="trip" class="card-img-top new-trip-img">
               <routerLink :to="{name:'tours'}">
               <div class="new-trip-img-over d-flex container justify-content-between  w-100 ">
                 <button class=" aa2 btn btn-success text-white rounded-pill ">
@@ -472,12 +357,12 @@
             </div>
             <div class="card-body">
               <div class="d-flex justify-content-between">
-                <span>Pyramids -Egypt</span>
+                <span>{{ d.city }} -Egypt</span>
                 <span><img src="frontend/icons/people.svg" width="30px"></span>
               </div>
 
-              <h4>Riding Camels , See Fireworks at night</h4>
-              <span class="fw-bold">100 EGP / <small class="fw-normal">Person</small></span>
+              <h5>{{ d.description }}</h5>
+              <span class="fw-bold">{{ d.price }} EGP / <small class="fw-normal">Person</small></span>
             </div>
 
           </div>
@@ -485,67 +370,7 @@
 
         </div>
 
-        <!--  -->
-
-        <div class="col-md-6 col-lg-4">
-          <div class="card rounded-4 overflow-hidden card-trip mb-4">
-            <div class="card-header bg-transparent p-0">
-
-              <img src="frontend/imgs/ii.png" alt="trip" class="card-img-top new-trip-img">
-              <div class="new-trip-img-over d-flex container justify-content-between  w-100 ">
-                <button class=" aa2 btn btn-success text-white rounded-pill ">
-                  25% OFF
-                </button>
-
-                <i class="fa-regular fa-heart loc_ico p-2 rounded-circle"
-                  style=" background-color: rgba(0, 0, 0,.3);"></i>
-
-
-              </div>
-            </div>
-            <div class="card-body">
-              <div class="d-flex justify-content-between">
-                <span>Pyramids -Egypt</span>
-                <span><img src="frontend/icons/people.svg" width="30px"></span>
-              </div>
-
-              <h4>Riding Camels , See Fireworks at night</h4>
-              <span class="fw-bold">100 EGP / <small class="fw-normal">Person</small></span>
-            </div>
-
-          </div>
-
-        </div>
-        <!--  -->
-        <div class="col-md-6 col-lg-4">
-          <div class="card rounded-4 overflow-hidden card-trip mb-4">
-            <div class="card-header bg-transparent p-0">
-
-              <img src="frontend/imgs/ii.png" alt="trip" class="card-img-top new-trip-img">
-              <div class="new-trip-img-over d-flex container justify-content-between  w-100 ">
-                <button class=" aa2 btn btn-success text-white rounded-pill ">
-                  25% OFF
-                </button>
-
-                <i class="fa-regular fa-heart loc_ico p-2 rounded-circle" 
-                  style=" background-color: rgba(0, 0, 0,.3);"></i>
-
-              </div>
-            </div>
-            <div class="card-body">
-              <div class="d-flex justify-content-between">
-                <span>Pyramids -Egypt</span>
-                <span><img src="frontend/icons/people.svg" width="30px"></span>
-              </div>
-
-              <h4>Riding Camels , See Fireworks at night</h4>
-              <span class="fw-bold">100 EGP / <small class="fw-normal">Person</small></span>
-            </div>
-
-          </div>
-
-        </div>
-        <!--  -->
+       
       </div>
     </div>
 
@@ -605,19 +430,22 @@
       </div>
 
       <div class="row">
-        <div class="col-md-6 col-lg-4 d-flex justify-content-center">
+        <div v-for="a in tours" :key="a" class="col-md-6 col-lg-4 d-flex justify-content-center">
 
           
           <routerLink :to="{name:'tour-guide'}">
           <div class="card border-1 mb-4">
             <div class="card-header bg-transparent bg-transparent d-flex justify-content-center border-0">
-              <img src="frontend/imgs/alex.jpg" alt="" class="border border-2 rounded-circle" width="70px" height="70px">
+              <img :src="a.profileImg" alt="" class="border border-2 rounded-circle" width="70px" height="70px">
             </div>
             <div class="card-body text-center">
-              <h5>Dina Ahmed</h5>
+              <h5>{{ a.fullName }}</h5>
               <strong>5.0 <i class="fa-solid fa-star"></i></strong>
-              <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptatibus expedita ea itaque excepturi
+              <p v-if="!a.description">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptatibus expedita ea itaque excepturi
                 nisi. Architecto provident minus excepturi</p>
+                <p style=" 
+  overflow: hidden;
+  text-overflow: ellipsis;" v-if="a.description">{{ a.description }}</p>
 
             </div>
 
@@ -627,44 +455,7 @@
         </div>
         <!--  -->
 
-        <div class="col-md-6 col-lg-4 d-flex justify-content-center">
-          <div class="card border-1 mb-4 ">
-            <div class="card-header bg-transparent bg-transparent d-flex justify-content-center border-0">
-              <img src="frontend/imgs/alex.jpg" alt="" class="border border-2 rounded-circle" width="70px" height="70px">
-            </div>
-            <div class="card-body text-center">
-              <h5>Dina Ahmed</h5>
-              <strong>5.0 <i class="fa-solid fa-star"></i></strong>
-              <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptatibus expedita ea itaque excepturi
-                nisi. Architecto provident minus excepturi</p>
-
-            </div>
-
-          </div>
-
-        </div>
-        <!--  -->
-        <div class="col-md-6 col-lg-4 d-flex justify-content-center">
-          <div class="card border-1 mb-4 ">
-            <div class="card-header bg-transparent bg-transparent d-flex justify-content-center border-0">
-              <img src="frontend/imgs/alex.jpg" alt="" class="border border-2 rounded-circle" width="70px" height="70px">
-            </div>
-            <div class="card-body text-center">
-              <h5>Dina Ahmed</h5>
-              <strong>5.0 <i class="fa-solid fa-star"></i></strong>
-              <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptatibus expedita ea itaque excepturi
-                nisi. Architecto provident minus excepturi</p>
-
-            </div>
-
-          </div>
-
-        </div>
-        <!--  -->
-
-
-
-
+      
 
 
       </div>
@@ -787,20 +578,44 @@
 
 
 <script>
+import axios from "axios";
 export default{
-  
+  data() {
+    return {
+   trip:{},
+   top_trip:{},
+   descount:{},
+   tours:{}
+    };
+  },
     name:'HomePage',
-
+    mounted() {
+      axios.get('/api/v1/tours?sort=-createdAt',this.resetpass).then((res) => {
+         this.trip=res.data.data
+   console.log(res)
+    })
+    axios.get('/api/v1/tours?sort=-ratingsQuantity',this.resetpass).then((res) => {
+         this.top_trip=res.data.data
+   console.log(res)
+    })
+    axios.get('/api/v1/tours?sort=price',this.resetpass).then((res) => {
+         this.descount=res.data.data
+   console.log(res)
+    })
+    axios.get('/api/v1/tours?sort=price',this.resetpass).then((res) => {
+         this.descount=res.data.data
+   console.log(res)
+    })
+    axios.get('/api/v1/admin/users?role=tour guide&isApproved=true',this.resetpass).then((res) => {
+         this.tours=res.data.data
+   console.log(res)
+    })
+  },
+  
     methods:{
       changeHeart(){
         document.getElementById('fa-heart').style.color='red';
-  //       const heart = document.getElementById('fa-heart');
-  // const currentColor = heart.style.color;
-  // if (currentColor === 'red') {
-  //   heart.style.color = 'white';
-  // } else {
-  //   heart.style.color = 'red';
-  // }
+
     
 }
 

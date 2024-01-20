@@ -82,11 +82,10 @@
                 <h2 class="fw-bolder mt-1 pt-1">Login</h2>
                 <div class="linee mb-5"></div>
 
-                <form action="">
-                    <input type="email" value="" placeholder="E-mail" class="form-control">
-                    <input type="password" value="" placeholder="Password" class="form-control">
+                    <input type="email" v-model="login.email" placeholder="E-mail" class="form-control">
+                    <input type="password"  v-model="login.password" placeholder="Password" class="form-control">
                     <p class="forget">
-                        <a style="cursor: pointer;" class="text-black" @click="openModal('modal_forget'); closeModal('myModal_login')" >Forget Password?</a>
+                        <a style="cursor: pointer;" class="text-black" @click="openModal('modal_forget')" >Forget Password?</a>
                     </p>
 
                     <div>
@@ -94,14 +93,14 @@
                       <!-- <input type="submit" value="Login" class="text-white p-3 rounded-5 border-0 mt-4" style="width: 100%; background-color: #ff7013; font-size: 27px;"> -->
 
 
-                        <button class="text-white p-3 rounded-5 border-0 mt-4" style="width: 100%; background-color: #ff7013; font-size: 27px;">Login</button>
+                        <button @click="sigin()" class="text-white p-3 rounded-5 border-0 mt-4" style="width: 100%; background-color: #ff7013; font-size: 27px;">Login</button>
                     </div>
 
                     <div>
                         <p class="p-sign ps-5">You don't have any account yet? <a  class="span-sign"  @click="openModal('modal_signup'); closeModal('myModal_login')">Sign Up</a></p>
                         <!-- data-bs-toggle="modal" data-bs-target="#firstModal" -->
                     </div>
-                </form>
+              
             </div>
         </div>
     </div>
@@ -143,8 +142,8 @@
                 <h2 class="fw-bolder mt-2 pt-5 display-5">Forget Password?</h2>
                 <div class="linee mb-5"></div>
   
-                <form action="">
-                  <input type="email" value="" placeholder="e-mail" required class="form-control">
+                
+                  <input type="email" v-model="forgetpassword.email" placeholder="e-mail" required class="form-control">
   
   
                   
@@ -156,11 +155,11 @@
   
   
                     <button class="text-white p-3 rounded-5 border-0 mt-4"
-                      style="width: 100%; background-color: #ff7013; font-size: 27px;" @click="openModal('modal_send_verify');closeModal('modal_forget')" >Send a Code</button>
+                      style="width: 100%; background-color: #ff7013; font-size: 27px;" @click="sendcode(); openModal('modal_send_verify');closeModal('modal_forget')" >Send a Code</button>
                   </div>
   
   
-                </form>
+              
               </div>
             </div>
           </div>
@@ -221,18 +220,17 @@
                   <h2 class="fw-bolder mt-5 pt-2">Sign up as New User</h2>
                   <div class="linee mb-5"></div>
 
-                  <form action="">
-                      <input type="text" value="" placeholder="Full name" required class="form-control">
-                      <input type="tel" value="" placeholder="Phone Number" class="form-control" required>
+                      <input type="text" v-model="regist.fullName" placeholder="Full name" required class="form-control">
+                      <input type="tel" v-model="regist.phoneNumber"  placeholder="Phone Number" class="form-control" required>
 
-                      <input type="email" value="" placeholder="E-mail" class="form-control" required>
+                      <input type="email"  v-model="regist.email" placeholder="E-mail" class="form-control" required>
 
 
-                      <input type="password" value="" placeholder="Password" class="form-control" required>
+                      <input type="password" v-model="regist.password" placeholder="Password" class="form-control" required>
 
-                      <input type="password" value="" placeholder="Confirm Password" class="form-control" required>
+                      <input type="password" v-model="regist.passwordConfirm" placeholder="Confirm Password" class="form-control" required>
 
-                      <input type="checkbox" name="ch" id="" style="transform: scale(2);">
+                      <input type="checkbox" name="ch" style="transform: scale(2);">
                       <label for="" class="ms-3" style="font-size: 19px;"> I agree the terms and conditions</label>
 
 
@@ -244,14 +242,14 @@
                         <!-- <input type="submit" value="sign up" class="text-white p-3 rounded-5 border-0 mt-4" style="width: 100%; background-color: #ff7013; font-size: 27px;"> -->
 
 
-                          <a style="cursor: pointer;" @click="openModal('modal_confirm_verify_signup');closeModal('modal_user_')"><button class="text-white p-3 rounded-5 border-0 mt-4" style="width: 100%; background-color: #ff7013; font-size: 27px;">Sign Up</button></a>
+                          <a style="cursor: pointer;" @click="register();"><button class="text-white p-3 rounded-5 border-0 mt-4" style="width: 100%; background-color: #ff7013; font-size: 27px;">Sign Up</button></a>
                       </div>
 
                       <div>
                           <p class="p-sign ps-5">You already have an account ? <a class="span-sign" @click="openModal('myModal_login');closeModal('modal_user_')" >Login</a></p>
                           <!-- data-bs-toggle="modal" data-bs-target="#firstModal" -->
                       </div>
-                  </form>
+              
               </div>
           </div>
       </div>
@@ -296,10 +294,10 @@
               <h2 class="fw-bolder mt-2 pt-2">Join as a tour guide</h2>
               <div class="linee mb-5"></div>
 
-              <form action="">
+        
                 <input type="text" value="" placeholder="ID number" required class="form-control">
 
-                <select name="city" id="city-select" class="form-control form-select" required>
+                <select name="city" id="city-select"  class="form-control form-select" required>
                   <option value="cairo" active>Cairo</option>
                   <option value="alexandria">Alexandria</option>
                   <option value="giza">Giza</option>
@@ -337,8 +335,6 @@
                 <label for="" class="ms-3 mb-2" style="font-size: 20px;"> Description (it contains a description of you
                   and your travel)</label>
                 <textarea name="" id="" cols="30" rows="4" class="form-control" style="height:100px"></textarea>
-
-
                 <div>
 
                   <div class="border border-1 border-black rounded-4 d-flex justify-content-center align-items-center"
@@ -374,11 +370,11 @@
 
 
                   <button class="text-white p-3 rounded-5 border-0 mt-4"
-                    style="width: 100%; background-color: #ff7013; font-size: 27px;" @click="openModal('Modal_verify_signup');closeModal('modal_join_tour')" >Join</button>
+                    style="width: 100%; background-color: #ff7013; font-size: 27px;" @click="tourregist();" >Join</button>
                 </div>
 
 
-              </form>
+              
             </div>
           </div>
         </div>
@@ -433,22 +429,22 @@
 
                           <div class="row p-5">
                             <div class="col">
-                              <input type="text" name="" id="" class="verify1" maxlength="1" >
+                              <input type="text" v-model="in1" name="" id="" class="verify1" maxlength="1" >
                             </div>
                             <div class="col">
-                              <input type="text" name="" id="" class="verify1" maxlength="1" >
+                              <input type="text" name="" v-model="in2" id="" class="verify1" maxlength="1" >
                             </div>
                             <div class="col">
-                              <input type="text" name="" id="" class="verify1" maxlength="1" >
+                              <input type="text" name="" v-model="in3" id="" class="verify1" maxlength="1" >
                             </div>
                             <div class="col">
-                              <input type="text" name="" id="" class="verify1" maxlength="1" >
+                              <input type="text" name="" v-model="in4" id="" class="verify1" maxlength="1" >
                             </div>
                             <!-- will be display block if the code identical to code into database -->
                             <p class="errorMsg text-danger text-center " style="font-size: 20px; display: none;">This code dosn't match the code that was sent</p>
 
                             <button class="text-white p-3 rounded-5 border-0 mt-5"
-                              style="width: 90%; background-color: #ff7013; font-size: 27px;" @click="openModal('modal_confirm_verify_signup'); closeModal('Modal_verify_signup')"
+                              style="width: 90%; background-color: #ff131b; font-size: 27px;" @click=" verfysinup(); openModal('modal_join_tour'); closeModal('Modal_verify_signup')"
                               >Verify</button>
 
                             <div>
@@ -556,23 +552,23 @@
 
                           <div class="row p-5">
                             <div class="col">
-                              <input type="text" name="" id="" class="verify1" maxlength="1" >
+                              <input type="text" v-model="input1" name="" id="" class="verify1" maxlength="1" >
                             </div>
                             <div class="col">
-                              <input type="text" name="" id="" class="verify1" maxlength="1" >
+                              <input type="text" name="" v-model="input2" id="" class="verify1" maxlength="1" >
                             </div>
                             <div class="col">
-                              <input type="text" name="" id="" class="verify1" maxlength="1" >
+                              <input type="text" name="" v-model="input3" id="" class="verify1" maxlength="1" >
                             </div>
                             <div class="col">
-                              <input type="text" name="" id="" class="verify1" v>
+                              <input type="text" name="" v-model="input4" id="" class="verify1" v>
                             </div>
                             <!-- will be display block if the code identical to code into database -->
                             <p class="errorMsg text-danger text-center " style="font-size: 20px; display: none;">This code dosn't match the code that was sent</p>
 
                             <button class="text-white p-3 rounded-5 border-0 mt-5"
                               style="width: 90%; background-color: #ff7013; font-size: 27px;"
-                              id="verify_code_pass" @click="openModal('modal_confirm_info');closeModal('modal_send_verify')" >Verify</button>
+                              id="verify_code_pass" @click="verfy(); openModal('modal_confirm_info');closeModal('modal_send_verify')" >Verify</button>
 
                             <div>
                               <p class="p-sign ps-5">You didn't recive any account yet ? <a href="sign_in.html"
@@ -669,9 +665,9 @@
 
                   <p class="text-center ps-5 ms-3 mb-4 fw-bold" style="font-size: 25px;">Enter the new password, noting that it must strong and contain letters ,symbols and numbers</p>
 
-                  <form action="">
-                      <input type="password" value="" placeholder="New Password" class="form-control">
-                      <input type="password" value="" placeholder="Confirm the password" class="form-control">
+                      <input type="email" v-model="resetpass.email" placeholder="please enter your email" class="form-control">
+                      <input type="password" v-model="resetpass.newPassword" placeholder="New Password" class="form-control">
+                      <input type="password" v-model="resetpass.newPasswordConfirm"  placeholder="Confirm the password" class="form-control">
                     
 
                       <div>
@@ -679,14 +675,14 @@
                         <!-- <input type="submit" value="Login" class="text-white p-3 rounded-5 border-0 mt-4" style="width: 100%; background-color: #ff7013; font-size: 27px;"> -->
 
 
-                        <a><button class="text-white p-3 rounded-5 border-0 mt-4" style="width: 100%; background-color: #ff7013; font-size: 27px;" @click="openModal('modal_confirm_reset'); closeModal('modal_reset_pass')">Reset Password</button></a>
+                        <a><button class="text-white p-3 rounded-5 border-0 mt-4" style="width: 100%; background-color: #ff7013; font-size: 27px;" @click="reset(); openModal('modal_confirm_reset'); closeModal('modal_reset_pass')">Reset Password</button></a>
                           <!-- @click -->
 
                           
                       </div>
 
                      
-                  </form>
+                 
               </div>
           </div>
       </div>
@@ -805,9 +801,29 @@
 
 
 <script>
+import axios from "axios";
  import ModalSignupComp from '@/components/Design/ModalSignup.vue';
  import ModalSignupTourComp from '@/components/Design/ModalSignup_tour.vue';
 export default{
+  data() {
+    return {
+      // ... existing data properties ...
+      forgetpassword: { },
+      input1:"",
+      input2:"",
+      input3:"",
+      input4:"",
+      regist:{},
+      verf:{
+        resetCode:''
+      },
+      email:{
+        resetCode:''
+      },
+      login:{},
+      resetpass:{}
+    };
+  },
 
   components:{ModalSignupComp,ModalSignupTourComp},
 
@@ -831,7 +847,121 @@ methods: {
     this.closeModal('modal_signup');
     this.closeModal('myModal_login');
   },
+  verfysinup(){
+    
+    this.verf.resetCode=this.in1+this.in2+this.in3+this.in4
+
+axios.post('/api/v1/auth/signup-verify-code',this.verf).then((res) => {
+
+
+axios.defaults.withCredentials = true
+
+
+axios.defaults.headers.common['Access-Control-Allow-Origin'] = '*'
+axios.defaults.headers.common['local'] = localStorage.getItem('appLang')
+
+axios.interceptors.request.use((config) => {
+  try {
+    config.headers.Authorization = `Bearer ${JSON.parse(res.data.token)}`
+  } catch (error) {
+    config.headers.Authorization = `Bearer ${res.data.token}`
+  }
+  config.headers.Accept = 'application/json'
+  // config.headers["Content-Type"] = "application/json";
+  return config
+})
+console.log(res)
+}).catch((el)=>{
+
+console.log(el)
+
+
+})
+
+  },
+
+  verfy(){
+  this.email.resetCode=this.input1+this.input2+this.input3+this.input4
+
+axios.post('/api/v1/auth/verify-reset-code',this.email).then((res) => {
+
+console.log(res)
+}).catch((el)=>{
+
+console.log(el)
+
+
+})
+
+},
+tourregist(){
+
+  axios.post('/api/v1/auth/tour-guide-signup').then((res) => {
+
+   this.closeModal('modal_user_')
+  this.closeModal('modal_join_tour')
+   console.log(res)
+    }).catch(()=>{
+ 
+      alert("please check your form")
+     
+
+    })
+
+},
+register(){
+  axios.post('/api/v1/auth/signup',this.regist).then((res) => {
+   this.openModal('modal_confirm_verify_signup')
+   this.closeModal('modal_user_')
+   console.log(res)
+    }).catch(()=>{
+ 
+      alert("please check your form")
+     
+
+    })
+},
+reset(){
+  console.log("test")
+    axios.put('/api/v1/auth/reset-password',this.resetpass).then((res) => {
+   
+   console.log(res)
+    }).catch(()=>{
+ 
+   alert("please check your form")
+     
+
+    })
+},
+sigin(){
+  axios.post('/api/v1/auth/login',this.login).then((res) => {
+    this.closeModal('myModal_login');
+   console.log(res)
+    }).catch((el)=>{
+ 
+     alert("email or password not match")
+     console.log(el)
+
+    })
+
+},
+
+  sendcode(){
+    console.log("test")
+    axios.post('/api/v1/auth/forgot-password',this.forgetpassword).then((res) => {
+   
+   console.log(res)
+    }).catch((el)=>{
+ 
+      console.log(el)
+     
+
+    })
+
+  },
+
   openModal(modalId) {
+
       const modal = document.getElementById(modalId);
       modal.style.display = 'block';
       document.body.classList.add('modal-open');

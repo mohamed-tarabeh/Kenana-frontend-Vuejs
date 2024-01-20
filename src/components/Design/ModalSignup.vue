@@ -27,7 +27,7 @@
                 <!-- <div class="linee mb-5 "></div> -->
           
                 <div class="pre-form d-flex justify-content-center mt-5 pt-1 mb-4">
-                  <h1 >Do you want to join as ...</h1>
+                  <h1 >Do you want to join as ....</h1>
                 </div>
                 <form action="" class="ps-5">
           
@@ -62,7 +62,7 @@
                     <!-- <button class="text-white p-3 rounded-5 border-0 mt-5" style="width: 100%; background-color: #ff7013; font-size: 27px;" @click="openModal('modal_signup_2')">Next</button> -->
 
                     <!-- <a class=" btn text-white p-3 rounded-5 border-0 mt-5" style="width: 100%; background-color: #ff7013; font-size: 27px;" @click="openModal('modal_signup_2');closeModal('myModal_login');closeModal('modal_signup')" id="next_p">Next</a> -->
-                    <a class=" btn text-white p-3 rounded-5 border-0 mt-5" style="width: 100%; background-color: #ff7013; font-size: 27px;" @click="selectOption();closeModal('myModal_login');closeModal('modal_signup')" id="next_p">Next</a>
+                    <a class=" btn text-white p-3 rounded-5 border-0 mt-5" style="width: 100%; background-color: #ff7013; font-size: 27px;" @click="reset(); selectOption();closeModal('myModal_login');closeModal('modal_signup')" id="next_p">Next</a>
                     "
                   </div>
                   
@@ -89,6 +89,7 @@
 
 
 <script>
+import axios from "axios";
 export default{
   data() {
     return {
@@ -111,6 +112,25 @@ window.addEventListener('resize', this.handleResize);
   },
   
 methods: {
+  reset(){
+    axios.defaults.withCredentials = false
+
+
+axios.defaults.headers.common['Access-Control-Allow-Origin'] = ' '
+
+
+axios.interceptors.request.use((config) => {
+  try {
+    config.headers.Authorization = ''
+  } catch (error) {
+    config.headers.Authorization =''
+  }
+  config.headers.Accept = 'application/json'
+  // config.headers["Content-Type"] = "application/json";
+  return config
+})
+
+  },
   selectOption() {
       if (this.selectedOption === 'tourGuide') {
         this.openModal('modal_signup_2');

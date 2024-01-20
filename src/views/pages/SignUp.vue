@@ -15,7 +15,7 @@
       <!-- <div class="linee mb-5 "></div> -->
 
       <div class="pre-form d-flex justify-content-center mt-5 pt-5 mb-4">
-        <h1 >Do you want to join as ...</h1>
+        <h1 >Do you want to join as ....</h1>
       </div>
       <form action="" class="ps-5">
 

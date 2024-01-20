@@ -47,10 +47,6 @@
 </main>
 </template>
 
-<script>
-// import { RouterLink } from 'vue-router';
-
-</script>
 
 <style>
 
