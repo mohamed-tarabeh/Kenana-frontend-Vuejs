@@ -63,6 +63,7 @@ const routes = [
     component: ToursPage
   },
   {
+   
     path: '/tour-guides',
     name: 'tours-guides',
     component: TourguiedsPage
@@ -93,7 +94,7 @@ const routes = [
     component: BookPage
   },
   {
-    path: '/pyramids',
+    path: '/pyramids/:id',
     name: 'pyramids-page',
     component: PyramidsPage
   },
@@ -155,7 +156,7 @@ const routes = [
     component: FAQPage
   },
   {
-    path: '/tour-guide',
+    path: '/tour-guide/:id',
     name: 'tour-guide',
     component: Tour_gprofilePage
   },

@@ -46,196 +46,40 @@
     <div class="container guides">
       <!-- row1 -->
       <div class="row mb-4">
-        <div class="col-lg-4 col-md-12">
-          <routerLink :to="{name:'tour-guide'}">
+        <div  v-for="t in tours" style="margin-top: 15px !important;" :key="t" class="col-lg-4 col-md-12">
+          
            
           <div class="card border border-secondary border-opacity-25 rounded-4">
             <div class="card-header bg-transparent border-0 d-flex justify-content-center">
              
-              <img src="frontend/imgs/clients_openion.PNG" class="rounded-circle im-guide border border-black" alt="">
-            
+              <img v-if="!t.profileImg" src="frontend/imgs/clients_openion.PNG" class="rounded-circle im-guide border border-black" alt="">
+              <img v-if="t.profileImg" :src="t.profileImg" class="rounded-circle im-guide border border-black" alt="">
+              
 
             </div>
-            <routerLink :to="{name:'tour-guide'}">
+            
             <div class="card-body mt-0">
-              <p class="text-center fw-bolder" style="margin-top: -15px; font-size: 20px;">Kareem Ahmed</p>
+              <p class="text-center fw-bolder" style="margin-top: -15px; font-size: 20px;">{{ t.fullName }}</p>
               <p class="text-center fw-bolder" style="margin-top: -15px; font-size: 20px;">5.0 <span> <i class="fa fa-star"></i></span></p>
 
-              <p class="text-center">Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro saepe voluptatum consectetur tempora culpa eius blanditiis debitis animi, explicabo quasi iure aspernatur perferendis</p>
+              <p v-if="t.description" class="text-center">{{ t.description }}</p>
+              <p v-if="!t.description"  class="text-center">Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro saepe voluptatum consectetur tempora culpa eius blanditiis debitis animi, explicabo quasi iure aspernatur perferendis</p>
 
             </div>
-          </routerLink>
+        
           </div>
-        </routerLink>
+   
           
 
         </div>
 
-        <div class="col-lg-4 col-md-12">
-          <a href="tour1-guides _profile.html" class="text-decoration-none">
-          <div class="card border border-secondary border-opacity-25 rounded-4">
-            <div class="card-header bg-transparent border-0 d-flex justify-content-center">
-             
-              <img src="frontend/imgs/clients_openion.PNG" class="rounded-circle im-guide border border-black" alt="">
-            
-
-            </div>
-            <div class="card-body mt-0">
-              <p class="text-center fw-bolder" style="margin-top: -15px; font-size: 20px;">Kareem Ahmed</p>
-              <p class="text-center fw-bolder" style="margin-top: -15px; font-size: 20px;">5.0 <span> <i class="fa fa-star"></i></span></p>
-
-              <p class="text-center">Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro saepe voluptatum consectetur tempora culpa eius blanditiis debitis animi, explicabo quasi iure aspernatur perferendis</p>
-
-            </div>
-          </div>
-          </a>
-
-        </div>
 
 
 
-       <div class="col-lg-4 col-md-12">
-          <a href="tour1-guides _profile.html" class="text-decoration-none">
-          <div class="card border border-secondary border-opacity-25 rounded-4">
-            <div class="card-header bg-transparent border-0 d-flex justify-content-center">
-             
-              <img src="frontend/imgs/clients_openion.PNG" class="rounded-circle im-guide border border-black" alt="">
-            
-
-            </div>
-            <div class="card-body mt-0">
-              <p class="text-center fw-bolder" style="margin-top: -15px; font-size: 20px;">Kareem Ahmed</p>
-              <p class="text-center fw-bolder" style="margin-top: -15px; font-size: 20px;">5.0 <span> <i class="fa fa-star"></i></span></p>
-
-              <p class="text-center">Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro saepe voluptatum consectetur tempora culpa eius blanditiis debitis animi, explicabo quasi iure aspernatur perferendis</p>
-
-            </div>
-          </div>
-          </a>
-
-        </div>
+      
       </div>
-      <!-- end row1 -->
 
 
-       <!-- row2 -->
-       <div class="row">
-        <div class="col-lg-4 col-md-12">
-
-          <div class="card border border-secondary border-opacity-25 rounded-4">
-            <div class="card-header bg-transparent border-0 d-flex justify-content-center">
-              <img src="frontend/imgs/clients_openion.PNG" class="rounded-circle im-guide border border-black" alt="">
-            
-
-            </div>
-            <div class="card-body mt-0">
-              <p class="text-center fw-bolder" style="margin-top: -15px; font-size: 20px;">Kareem Ahmed</p>
-              <p class="text-center fw-bolder" style="margin-top: -15px; font-size: 20px;">5.0 <span> <i class="fa fa-star"></i></span></p>
-
-              <p class="text-center">Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro saepe voluptatum consectetur tempora culpa eius blanditiis debitis animi, explicabo quasi iure aspernatur perferendis</p>
-
-            </div>
-          </div>
-
-        </div>
-
-        <div class="col-lg-4 col-md-12">
-              <div class="card border border-secondary border-opacity-25 rounded-4">
-            <div class="card-header bg-transparent border-0 d-flex justify-content-center">
-              <img src="frontend/imgs/clients_openion.PNG" class="rounded-circle im-guide border border-black" alt="">
-            
-
-            </div>
-            <div class="card-body mt-0">
-              <p class="text-center fw-bolder" style="margin-top: -15px; font-size: 20px;">Kareem Ahmed</p>
-              <p class="text-center fw-bolder" style="margin-top: -15px; font-size: 20px;">5.0 <span> <i class="fa fa-star"></i></span></p>
-
-              <p class="text-center">Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro saepe voluptatum consectetur tempora culpa eius blanditiis debitis animi, explicabo quasi iure aspernatur perferendis</p>
-
-            </div>
-          </div>
-        </div>
-
-        <div class="col-lg-4 col-md-12">
-          <div class="card border border-secondary border-opacity-25 rounded-4">
-            <div class="card-header bg-transparent border-0 d-flex justify-content-center">
-              <img src="frontend/imgs/clients_openion.PNG" class="rounded-circle im-guide border border-black" alt="">
-            
-
-            </div>
-            <div class="card-body mt-0">
-              <p class="text-center fw-bolder" style="margin-top: -15px; font-size: 20px;">Kareem Ahmed</p>
-              <p class="text-center fw-bolder" style="margin-top: -15px; font-size: 20px;">5.0 <span> <i class="fa fa-star"></i></span></p>
-
-              <p class="text-center">Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro saepe voluptatum consectetur tempora culpa eius blanditiis debitis animi, explicabo quasi iure aspernatur perferendis</p>
-
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- end row2 -->
-<!-- show more and less btn-->
-<div class="d-flex justify-content-center mb-4 mt-5">
-   <button class="btn btn-success p-3 text-white border-0" id="show" style="background-color:#ff7013;">show more</button>
-   </div>
-
-      <!-- show more div -->
-<div class="more_tour" id="more_tour" style="display: none;">
-  <div class="row">
-        <div class="col-lg-4 col-md-12">
-
-          <div class="card border border-secondary border-opacity-25 rounded-4">
-            <div class="card-header bg-transparent border-0 d-flex justify-content-center">
-              <img src="frontend/imgs/clients_openion.PNG" class="rounded-circle im-guide border border-black" alt="">
-            
-
-            </div>
-            <div class="card-body mt-0">
-              <p class="text-center fw-bolder" style="margin-top: -15px; font-size: 20px;">Kareem Ahmed</p>
-              <p class="text-center fw-bolder" style="margin-top: -15px; font-size: 20px;">5.0 <span> <i class="fa fa-star"></i></span></p>
-
-              <p class="text-center">Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro saepe voluptatum consectetur tempora culpa eius blanditiis debitis animi, explicabo quasi iure aspernatur perferendis</p>
-
-            </div>
-          </div>
-
-        </div>
-
-        <div class="col-lg-4 col-md-12">
-              <div class="card border border-secondary border-opacity-25 rounded-4">
-            <div class="card-header bg-transparent border-0 d-flex justify-content-center">
-              <img src="frontend/imgs/clients_openion.PNG" class="rounded-circle im-guide border border-black" alt="">
-            
-
-            </div>
-            <div class="card-body mt-0">
-              <p class="text-center fw-bolder" style="margin-top: -15px; font-size: 20px;">Kareem Ahmed</p>
-              <p class="text-center fw-bolder" style="margin-top: -15px; font-size: 20px;">5.0 <span> <i class="fa fa-star"></i></span></p>
-
-              <p class="text-center">Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro saepe voluptatum consectetur tempora culpa eius blanditiis debitis animi, explicabo quasi iure aspernatur perferendis</p>
-
-            </div>
-          </div>
-        </div>
-
-        <div class="col-lg-4 col-md-12">
-          <div class="card border border-secondary border-opacity-25 rounded-4">
-            <div class="card-header bg-transparent border-0 d-flex justify-content-center">
-              <img src="frontend/imgs/clients_openion.PNG" class="rounded-circle im-guide border border-black" alt="">
-            
-
-            </div>
-            <div class="card-body mt-0">
-              <p class="text-center fw-bolder" style="margin-top: -15px; font-size: 20px;">Kareem Ahmed</p>
-              <p class="text-center fw-bolder" style="margin-top: -15px; font-size: 20px;">5.0 <span> <i class="fa fa-star"></i></span></p>
-
-              <p class="text-center">Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro saepe voluptatum consectetur tempora culpa eius blanditiis debitis animi, explicabo quasi iure aspernatur perferendis</p>
-
-            </div>
-          </div>
-        </div>
-      </div>
-  </div>
 <!-- end show more div -->
 
 <div class="d-flex justify-content-center mb-5">
@@ -256,9 +100,9 @@
   <!-- <a href="#" class="text-decoration-none">    -->
     <h1 class="mt-5 mb-4 fw-bolder">Tours</h1>
   <div class="row mb-4">
-    <div class="col-md-6 col-lg-4 top-trip">
+    <div style=" margin-top: 15px !important;" v-for="t in approved_tours" :key="t"   class="col-md-6 col-lg-4 top-trip">
       <routerLink :to="{name:'tours'}">
-      <div class="card rounded-4 overflow-hidden card-trip mb-4">
+      <div style="height: 100% !important;;"  class="card rounded-4 overflow-hidden card-trip mb-4">
         <div class="card-header bg-transparent p-0">
       
         <img src="frontend/imgs/ii.png" alt="trip" class="card-img-top new-trip-img">
@@ -276,7 +120,7 @@
           <span><img src="frontend/icons/people.svg" width="30px"></span>
          </div>
 
-        <h4>Riding Camels , See Fireworks at night</h4>
+        <h6>{{ t.description }}</h6>
         <span class="fw-bold">100 EGP / <small class="fw-normal">Person</small></span>
     </div>
     
@@ -284,62 +128,7 @@
 </routerLink>
   
 </div>
-<!--  -->
 
-<div class="col-md-6 col-lg-4 top-trip">
-  <div class="card rounded-4 overflow-hidden card-trip mb-4">
-    <div class="card-header bg-transparent p-0">
-  
-    <img src="frontend/imgs/ii.png" alt="trip" class="card-img-top new-trip-img">
-    <div class="new-trip-img-over d-flex container justify-content-end  w-100 ">  
-           
-            
-              <i class="fa-regular fa-heart loc_ico p-2 rounded-circle"  style=" background-color: rgba(0, 0, 0,.3);"></i>
-           
-
-          </div>
-        </div>
-<div class="card-body">
-      <div class="d-flex justify-content-between">
-      <span>Pyramids -Egypt</span>
-      <span><img src="frontend/icons/people.svg" width="30px"></span>
-     </div>
-
-    <h4>Riding Camels , See Fireworks at night</h4>
-    <span class="fw-bold">100 EGP / <small class="fw-normal">Person</small></span>
-</div>
-
-</div>
-
-</div>
-<!--  -->
-<div class="col-md-6 col-lg-4 top-trip">
-  <div class="card rounded-4 overflow-hidden card-trip mb-4">
-    <div class="card-header bg-transparent p-0">
-  
-    <img src="frontend/imgs/ii.png" alt="trip" class="card-img-top new-trip-img">
-    <div class="new-trip-img-over d-flex container justify-content-end  w-100 ">  
-            
-            
-              <i class="fa-regular fa-heart loc_ico p-2 rounded-circle"  style=" background-color: rgba(0, 0, 0,.3);"></i>
-           
-
-          </div>
-        </div>
-<div class="card-body">
-      <div class="d-flex justify-content-between">
-      <span>Pyramids -Egypt</span>
-      <span><img src="frontend/icons/people.svg" width="30px"></span>
-     </div>
-
-    <h4>Riding Camels , See Fireworks at night</h4>
-    <span class="fw-bold">100 EGP / <small class="fw-normal">Person</small></span>
-</div>
-
-</div>
-
-</div>
-<!--  -->
 </div>
 
 <!-- end row tour -->
@@ -515,7 +304,7 @@
 
   <div class="row">
     <div class="col-md-6 col-lg-4 d-flex justify-content-center">
-      <routerLink :to="{name:'tour-guide'}">
+
       <div class="card border-1 ">
         <div class="card-header bg-transparent d-flex justify-content-center border-0">
           <img src="frontend/imgs/alex.jpg" alt=""  class="border border-2 rounded-circle" width="70px" height="70px">
@@ -528,7 +317,7 @@
         </div>
     
       </div>
-    </routerLink>
+  
 
     </div>
     <!--  -->
@@ -615,10 +404,26 @@
 </template>
 
 <script>
-
+import axios from "axios";
 
 export default{
+  data() {
+    return {
+    tours:{},
+    approved_tours:{}
+    };
+  },
   mounted() {
+    axios.get('/api/v1/users?role=tour guide&isApproved=true').then((res) => {
+   this.tours=res.data.data
+   console.log(res)
+    })
+    axios.get('/api/v1/tours').then((res) => {
+   this.approved_tours=res.data.data
+   console.log(res)
+    })
+
+
     const script = document.createElement('script');
     script.src = 'https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js';
     script.onload = () => {

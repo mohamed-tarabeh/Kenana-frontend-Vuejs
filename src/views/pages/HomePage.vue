@@ -426,14 +426,14 @@
     <div class="explore container mb-5">
       <div class="d-flex justify-content-between mb-4">
         <h1>Explore Tour Guide</h1>
-        <routerLink :to="{name:'tours-guides'}"> <span>See More</span></routerLink>
+         <span>See More</span>
       </div>
 
       <div class="row">
         <div v-for="a in tours" :key="a" class="col-md-6 col-lg-4 d-flex justify-content-center">
 
           
-          <routerLink :to="{name:'tour-guide'}">
+         
           <div class="card border-1 mb-4">
             <div class="card-header bg-transparent bg-transparent d-flex justify-content-center border-0">
               <img :src="a.profileImg" alt="" class="border border-2 rounded-circle" width="70px" height="70px">
@@ -450,7 +450,7 @@
             </div>
 
           </div>
-          </routerLink>
+        
 
         </div>
         <!--  -->

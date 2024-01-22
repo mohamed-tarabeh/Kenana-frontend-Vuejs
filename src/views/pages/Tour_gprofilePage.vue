@@ -413,9 +413,18 @@
 </template>
 
 <script>
-
+import axios from "axios";
 export default{
  mounted(){
+  axios.get(`/api/v1/admin/users/${this.$route.params.id}`).then((res) => {
+      this.tours=res.data.data
+console.log(res)
+}).catch((el)=>{
+
+console.log(el)
+
+
+})
     const script = document.createElement('script');
     script.src = 'https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js';
     script.onload = () => {

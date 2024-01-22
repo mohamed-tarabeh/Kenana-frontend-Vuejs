@@ -19,44 +19,17 @@
   
 
 </div>
-<div class="row gallery">
+<div   class="row gallery">
 
   
-    <div class="col-lg-4 col-md-12 mb-4 mb-lg-0">
-      <img src="frontend/imgs/24d0ba77b05c09106404af72cbc22932.png"
-        class="w-100 shadow-1-strong rounded mb-4"
+    <div style="margin-bottom: 10px !important;" v-for=" x in tours.gallary" :key="x" class="col-lg-4 col-md-12 mb-4 mb-lg-0">
+      <img :src="x" style="height: 100% !important ; "
+        class="w-100  shadow-1-strong rounded mb-4"
         />
   
-      <img
-        src="https://mdbcdn.b-cdn.net/img/Photos/Vertical/mountain1.webp"
-        class="w-100 shadow-1-strong rounded mb-4"
-       />
     </div>
   
-    <div class="col-lg-4 mb-4 mb-lg-0">
-      <img
-        src="https://mdbcdn.b-cdn.net/img/Photos/Vertical/mountain2.webp"
-        class="w-100 shadow-1-strong rounded mb-4"
-        alt="Mountains in the Clouds"/>
-  
-      <img
-        src="frontend/imgs/2ab37ca6249a1ff1defb3b3889df1069.png"
-        class="w-100 shadow-1-strong rounded mb-4"
-        alt="Boat on Calm Water"/>
-    </div>
-  
-    <div class="col-lg-4 mb-4 mb-lg-0">
-      <img
-        src="frontend/imgs/ea112de48a2344001e47810f0682d484.png"
-        class="w-100 shadow-1-strong rounded mb-4"
-        alt="Waves at Sea"/>
-  
-      <img
-        src="https://mdbcdn.b-cdn.net/img/Photos/Vertical/mountain3.webp"
-        class="w-100 shadow-1-strong rounded mb-4"
-        alt="Yosemite National Park"
-      />
-    </div>
+
 
     <!-- show all photos -->
     <div class="show_all col-12 d-flex justify-content-end">
@@ -74,7 +47,7 @@
  
 
   <!--  -->
-  <section>
+  <section  :key="x">
     <div class="container mt-5">
     <div class="row">
       <!-- col paragrph -->
@@ -86,37 +59,20 @@
               <img src="frontend/imgs/clients_openion.PNG" alt="" class="rounded-circle border border-2" width="80px">
             </div>
             <div class="col-10 ps-5">
-              <h2>Ahmed Mohamed</h2>
+              <h2>{{ tours.tourGuide?.fullName }}</h2>
               <strong>5.0 <i class="fa-solid fa-star"></i></strong>
             </div>
             </div>
-            
-          <p class="fw-bold mt-4">Lorem ipsum dolor sit amet consectetur, adipisicing  Nihil aliquam atque sequi laboriosam rerum blanditiis ipsam nemo aut vel, facere provident. Adipisci delectus aliquid laudantium beatae suscipit saepe corporis hic?</p>
-          <p class="fw-bold">Lorem ipsum dolor sit amet consectetur, adipisicing  Nihil aliquam atque sequi laboriosam rerum blanditiis ipsam nemo aut vel, facere provident. Adipisci delectus aliquid laudantium beatae suscipit saepe corporis hic?</p>
-          <p class="fw-bold">Lorem ipsum dolor sit amet consectetur, adipisicing  Nihil aliquam atque sequi laboriosam rerum blanditiis ipsam nemo aut vel, facere provident. Adipisci delectus aliquid laudantium beatae suscipit saepe corporis hic?</p>
+           
+          <p class="fw-bold mt-4">{{ tours.description }}</p>
+         
           <p></p>
 
      <h2>Tour Plan</h2>
 
-          <p>Lorem ipsum dolor, sit amet consectetur adipisicing  Provident tenetur aut perferendis, sed alias ullam ipsam nesciunt, dolorum aspernatur ab esse sapiente delectus atque voluptatem dolor quam quis tempore soluta!</p>
+         
           <p>
-            <ul type="none">
-              <li>
-              <i class="fa-solid fa-circle-check me-2"></i><span>Lorem ipsum dolor, sit amet consectetur adipisicing </span>
-            </li>
-              
-            <li>
-              <i class="fa-solid fa-circle-check me-2"></i><span>Lorem ipsum dolor, sit amet consectetur adipisicing </span>
-            </li>
-
-            <li>
-              <i class="fa-solid fa-circle-check me-2"></i><span>Lorem ipsum dolor, sit amet consectetur adipisicing </span>
-            </li>
-            <li>
-              <i class="fa-solid fa-circle-check me-2"></i><span>Lorem ipsum dolor, sit amet consectetur adipisicing </span>
-            </li>
-
-            </ul>
+            {{ tours.program }}
           </p>
 
       </div>
@@ -130,7 +86,7 @@
           <table class="table container mt-4">
             <tr>
               <td class="pb-3">
-                <h3 class="d-inline">100 EGP</h3>/Person
+                <h3 class="d-inline">{{tours.price }} EGP</h3>/Person
               </td>
             </tr>
 
@@ -139,7 +95,7 @@
                 <i class="fa-regular fa-clock me-2"></i>Duration
               </td>
               <td class="pb-3 text-right fw-bold">
-                1 Day
+                {{ tours.durations}}
               </td>
             </tr>
 
@@ -148,7 +104,7 @@
                 <i class="fa-regular fa-user me-2"></i>Max Guests
               </td>
               <td class="pb-3 text-right fw-bold">
-                30
+                {{ tours.maxGuests}}
               </td>
             </tr>
 
@@ -166,7 +122,7 @@
                 <i class="fa-solid fa-location-dot me-2"></i>Tour Location
               </td>
               <td class="pb-3 fw-bold">
-                Cairo
+                {{ tours.city }}
               </td>
             </tr>
 
@@ -643,8 +599,25 @@
 </template>
 
 <script>
+import axios from "axios";
 export default{
+  data() {
+    return {
+ 
+    tours:{},
+    approvedtours:{}
+    };
+  },
   mounted() {
+    axios.get(`/api/v1/tours/${this.$route.params.id }`).then((res) => {
+      this.tours=res.data.data
+console.log(res)
+}).catch((el)=>{
+
+console.log(el)
+
+
+})
     const script = document.createElement('script');
     script.src = 'https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js';
     script.onload = () => {

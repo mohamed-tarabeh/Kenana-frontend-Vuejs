@@ -42,16 +42,42 @@
             <li><routerLink class="nav-link" :to="{name:'blog'}" >Blog</routerLink></li>
           </ul>
         <div class="login d-flex align-items-center">
-          <div>
-            <routerLink :to="{name:'nav_2'}">
-            <svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M11.9995 22.1973C6.47651 22.1973 1.99951 17.7203 1.99951 12.1973C1.99951 6.67427 6.47651 2.19727 11.9995 2.19727C17.5225 2.19727 21.9995 6.67427 21.9995 12.1973C21.9995 17.7203 17.5225 22.1973 11.9995 22.1973ZM9.70951 19.8643C8.72293 17.7716 8.15138 15.5075 8.02651 13.1973H4.06151C4.2561 14.7362 4.89343 16.1854 5.89608 17.369C6.89873 18.5525 8.22352 19.4194 9.70951 19.8643ZM10.0295 13.1973C10.1805 15.6363 10.8775 17.9273 11.9995 19.9493C13.1518 17.8738 13.825 15.5667 13.9695 13.1973H10.0295ZM19.9375 13.1973H15.9725C15.8476 15.5075 15.2761 17.7716 14.2895 19.8643C15.7755 19.4194 17.1003 18.5525 18.1029 17.369C19.1056 16.1854 19.7429 14.7362 19.9375 13.1973ZM4.06151 11.1973H8.02651C8.15138 8.88705 8.72293 6.62295 9.70951 4.53027C8.22352 4.97515 6.89873 5.84202 5.89608 7.02556C4.89343 8.2091 4.2561 9.65837 4.06151 11.1973ZM10.0305 11.1973H13.9685C13.8243 8.82786 13.1515 6.5208 11.9995 4.44527C10.8472 6.52071 10.1741 8.82779 10.0295 11.1973H10.0305ZM14.2895 4.53027C15.2761 6.62295 15.8476 8.88705 15.9725 11.1973H19.9375C19.7429 9.65837 19.1056 8.2091 18.1029 7.02556C17.1003 5.84202 15.7755 4.97515 14.2895 4.53027Z" fill="black"/>
-            </svg>
+         
+            <div v-if="storedVariable" class="dropdown">
+            <a class="dropdown-toggle" id="profileDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+              <img :src="storedVariable" alt="Profile Image" class="profile-image rounded-circle" width="50px">
+            </a>
+           
+            <ul class="dropdown-menu" aria-labelledby="profileDropdown">
+              <li>
+                <!-- <a class="dropdown-item" href="#"> -->
+                  <routerLink class="dropdown-item" :to="{name:'u-profile'}">
+                  <i class="fas fa-user-circle me-2"></i>
+                  Profile
+                </routerLink>
+                <!-- </a> -->
+              </li>
+              <li>
+                <!-- <a class="dropdown-item" href="#"> -->
+           <routerLink class="dropdown-item" :to="{name:'favo'}">
+                  <i class="fas fa-heart fa-heart2 me-2 rounded-circle"></i>
+                  Favourite
+                <!-- </a> -->
             </routerLink>
-            </div>
-            
+              </li>
+              <li>
+                <routerLink class="nav-link" :to="{name:'new_tour'}" >
+                <a class="dropdown-item">
+                  <i class="fas fa-user-circle me-2"></i>
+                  Join as Tour Guide
+                </a>
+              </routerLink></li>
+
+              <!-- Additional dropdown items can be added here -->
+            </ul>
+          </div>
             <!-- <router-link to="/sign_in" ><button>login</button></router-link> -->
-           <button @click="openModal('myModal_login')">login</button>
+           <button v-if="!storedVariable"  @click="openModal('myModal_login')">login</button>
 
 
            <!-- All modals start -->
@@ -804,10 +830,12 @@
 import axios from "axios";
  import ModalSignupComp from '@/components/Design/ModalSignup.vue';
  import ModalSignupTourComp from '@/components/Design/ModalSignup_tour.vue';
+ 
 export default{
   data() {
     return {
       // ... existing data properties ...
+      storedVariable: localStorage.getItem('storedVariable') || '',
       forgetpassword: { },
       input1:"",
       input2:"",
@@ -936,6 +964,8 @@ reset(){
 sigin(){
   axios.post('/api/v1/auth/login',this.login).then((res) => {
     this.closeModal('myModal_login');
+    localStorage.setItem('storedVariable', res.data.data.profileImg);
+    location.reload()
    console.log(res)
     }).catch((el)=>{
  
