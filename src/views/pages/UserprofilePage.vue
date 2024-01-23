@@ -67,7 +67,7 @@
               <tr>
                 <td class="pb-4">
                   <label for="" class="form-label">Name</label>
-                  <input type="text" class="form-control border-0" value="Kareem Ahmed" readonly>
+                  <input type="text" class="form-control border-0" v-model="tours.fullName" >
                 </td>
 
                 <td class="d-flex justify-content-end">
@@ -90,7 +90,7 @@
                         <!-- Modal body -->
                         <div class="modal-body mt-3" style="margin-left:-40px">
                           <form action="">
-                            <input type="text" name="" id="" placeholder="Enter New Name"
+                            <input type="text" name="" id="" v-model="tours.fullName" placeholder="Enter New Name"
                               class="form-control small fw-lighter">
                             <div class="d-flex justify-content-center">
                               
@@ -117,7 +117,7 @@
               <tr>
                 <td class="pb-4">
                   <label for="" class="form-label">E-mail</label>
-                  <input type="text" class="form-control border-0" value="Kareem@gmail.com" readonly>
+                  <input type="text" class="form-control border-0" v-model="tours.email">
                 </td>
 
 
@@ -134,7 +134,7 @@
               <tr>
                 <td class="pb-4">
                   <label for="" class="form-label">Phone Number</label>
-                  <input type="text" class="form-control border-0" value="+2 000-000-000" readonly>
+                  <input type="text" class="form-control border-0" v-model="tours.phoneNumber" >
                 </td>
 
 
@@ -150,7 +150,7 @@
               <tr>
                 <td class="pb-4">
                   <label for="" class="form-label">Password</label>
-                  <input type="password" class="form-control border-0" value="password" readonly>
+                  <input styles="" type="password" class="form-control border-0" value="password" readonly>
                 </td>
 
 
@@ -163,9 +163,10 @@
                  
                 </td>
               </tr>
-
+              <button @click="update()" style="background-color: #ff7013; color: white; width: 100px; padding:15px ; margin-left:300px;border-radius:15px">update</button>
 
             </table>
+    
           </div>
 
           <!-- end info_div -->
@@ -609,8 +610,35 @@
 </template>
 
 <script>
+import axios from "axios";
 export default {
+  data() {
+    return {
+ 
+    tours:{},
+    approvedtours:{}
+    };
+  },
   mounted() {
+    axios.interceptors.request.use((config) => {
+  try {
+    config.headers.Authorization = `Bearer ${JSON.parse(localStorage.getItem('Authorization'))}`
+  } catch (error) {
+    config.headers.Authorization = `Bearer ${localStorage.getItem('Authorization')}`
+  }
+  config.headers.Accept = 'application/json'
+  // config.headers["Content-Type"] = "application/json";
+  return config
+})
+    axios.get(`/api/v1/users/getMe`).then((res) => {
+      this.tours=res.data.data
+console.log(res)
+}).catch((el)=>{
+
+console.log(el)
+
+
+})
     this.toggleTab(0);
     
     const script = document.createElement('script');
@@ -638,6 +666,27 @@ export default {
     document.head.appendChild(script);
   },
   methods: {
+    update(){
+      axios.interceptors.request.use((config) => {
+  try {
+    config.headers.Authorization = `Bearer ${JSON.parse(localStorage.getItem('Authorization'))}`
+  } catch (error) {
+    config.headers.Authorization = `Bearer ${localStorage.getItem('Authorization')}`
+  }
+  config.headers.Accept = 'application/json'
+  // config.headers["Content-Type"] = "application/json";
+  return config
+})
+      axios.put(`/api/v1/users/updateMe`,this.tours).then((res) => {
+
+console.log(res)
+}).catch((el)=>{
+
+console.log(el)
+
+
+})
+    },
     toggleTab(tabIndex) {
       let tabs = document.getElementsByClassName("tab");
       for (let i = 0; i < tabs.length; i++) {

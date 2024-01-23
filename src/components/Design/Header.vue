@@ -51,30 +51,36 @@
             <ul class="dropdown-menu" aria-labelledby="profileDropdown">
               <li>
                 <!-- <a class="dropdown-item" href="#"> -->
-                  <routerLink class="dropdown-item" :to="{name:'u-profile'}">
-                  <i class="fas fa-user-circle me-2"></i>
-                  Profile
-                </routerLink>
+                  <!-- <routerLink class="dropdown-item" :to="{name:'u-profile'}"> -->
+                 <div v-if="role == 'user'" @click="go()"  style="display: flex; cursor: pointer; padding-left: 20px;">
+                  <span><i class="dropdown-item fas fa-user-circle me-2"></i></span>
+                  <span>Profile</span>
+                 </div>
+                <!-- </routerLink> -->
                 <!-- </a> -->
               </li>
               <li>
                 <!-- <a class="dropdown-item" href="#"> -->
            <routerLink class="dropdown-item" :to="{name:'favo'}">
+                 
+                <!-- </a> -->
+                <a class="dropdown-item">
                   <i class="fas fa-heart fa-heart2 me-2 rounded-circle"></i>
                   Favourite
-                <!-- </a> -->
+                </a>
             </routerLink>
               </li>
               <li>
-                <routerLink class="nav-link" :to="{name:'new_tour'}" >
+                <div @click="gogo()" v-if="role == 'tour guide'" class="nav-link"  >
                 <a class="dropdown-item">
                   <i class="fas fa-user-circle me-2"></i>
                   Join as Tour Guide
                 </a>
-              </routerLink></li>
+              </div></li>
 
               <!-- Additional dropdown items can be added here -->
             </ul>
+            <button v-if="storedVariable"  @click="logout()">logout</button>
           </div>
             <!-- <router-link to="/sign_in" ><button>login</button></router-link> -->
            <button v-if="!storedVariable"  @click="openModal('myModal_login')">login</button>
@@ -470,7 +476,7 @@
                             <p class="errorMsg text-danger text-center " style="font-size: 20px; display: none;">This code dosn't match the code that was sent</p>
 
                             <button class="text-white p-3 rounded-5 border-0 mt-5"
-                              style="width: 90%; background-color: #ff131b; font-size: 27px;" @click=" verfysinup(); openModal('modal_join_tour'); closeModal('Modal_verify_signup')"
+                              style="width: 90%; background-color: #ff131b; font-size: 27px;" @click=" verfysinup(); "
                               >Verify</button>
 
                             <div>
@@ -836,6 +842,9 @@ export default{
     return {
       // ... existing data properties ...
       storedVariable: localStorage.getItem('storedVariable') || '',
+      Authorization: localStorage.getItem('Authorization') || '',
+      id: localStorage.getItem('id') || '',
+      role: localStorage.getItem('role') || '',
       forgetpassword: { },
       input1:"",
       input2:"",
@@ -880,13 +889,11 @@ methods: {
     this.verf.resetCode=this.in1+this.in2+this.in3+this.in4
 
 axios.post('/api/v1/auth/signup-verify-code',this.verf).then((res) => {
-
-
+  this.openModal('modal_join_tour') 
+  this.closeModal('Modal_verify_signup')
 axios.defaults.withCredentials = true
-
-
 axios.defaults.headers.common['Access-Control-Allow-Origin'] = '*'
-axios.defaults.headers.common['local'] = localStorage.getItem('appLang')
+
 
 axios.interceptors.request.use((config) => {
   try {
@@ -937,10 +944,36 @@ tourregist(){
     })
 
 },
+logout(){
+  localStorage.setItem('storedVariable','');
+  axios.interceptors.request.use((config) => {
+  try {
+    config.headers.Authorization = `Bearer ${JSON.parse(localStorage.getItem('Authorization'))}`
+  } catch (error) {
+    config.headers.Authorization = `Bearer ${localStorage.getItem('Authorization')}`
+  }
+  config.headers.Accept = 'application/json'
+  // config.headers["Content-Type"] = "application/json";
+  return config
+})
+  axios.post('/api/v1/users/logout').then((res) => {
+   this.openModal('modal_confirm_verify_signup')
+   this.closeModal('modal_user_')
+   location.reload()
+   console.log(res)
+    }).catch(()=>{
+ 
+      alert("please check your form")
+     
+
+    })
+   
+},
 register(){
   axios.post('/api/v1/auth/signup',this.regist).then((res) => {
    this.openModal('modal_confirm_verify_signup')
    this.closeModal('modal_user_')
+   
    console.log(res)
     }).catch(()=>{
  
@@ -961,10 +994,21 @@ reset(){
 
     })
 },
+gogo(){
+
+  this.$router.push({ name: 'new_tour' , params: {id: this.id} })
+},
+go(){
+  this.$router.push({ name: 'u-profile' , params: {id: this.id} })
+},
 sigin(){
   axios.post('/api/v1/auth/login',this.login).then((res) => {
     this.closeModal('myModal_login');
     localStorage.setItem('storedVariable', res.data.data.profileImg);
+    localStorage.setItem('Authorization',res.data.token);
+    localStorage.setItem('id',res.data.data._id);
+    localStorage.setItem('role',res.data.data.role);
+   
     location.reload()
    console.log(res)
     }).catch((el)=>{

@@ -89,7 +89,7 @@ const routes = [
   },
 
   {
-    path: '/book',
+    path: '/book/:id',
     name: 'book-page',
     component: BookPage
   },
@@ -105,7 +105,7 @@ const routes = [
     component: FavoPage
   },
   {
-    path: '/checkout-page',
+    path: '/checkout-page/:id',
     name: 'checkout',
     component: CheckoutPage
   },
@@ -146,7 +146,7 @@ const routes = [
   },
 
   {
-    path: '/u-profile',
+    path: '/u-profile/:id',
     name: 'u-profile',
     component: UserprofilePage
   },
@@ -195,7 +195,7 @@ const routes = [
 },
 
 {
-  path: '/newTour',
+  path: '/newTour/:id',
   name: 'new_tour',
   component: Tourg_profileNewtour
 },

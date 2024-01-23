@@ -416,6 +416,16 @@
 import axios from "axios";
 export default{
  mounted(){
+  axios.interceptors.request.use((config) => {
+  try {
+    config.headers.Authorization = `Bearer ${JSON.parse(localStorage.getItem('Authorization'))}`
+  } catch (error) {
+    config.headers.Authorization = `Bearer ${localStorage.getItem('Authorization')}`
+  }
+  config.headers.Accept = 'application/json'
+  // config.headers["Content-Type"] = "application/json";
+  return config
+})
   axios.get(`/api/v1/admin/users/${this.$route.params.id}`).then((res) => {
       this.tours=res.data.data
 console.log(res)

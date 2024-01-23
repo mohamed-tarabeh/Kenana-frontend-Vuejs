@@ -119,9 +119,7 @@ methods: {
       this.closeModal('modal_signup_2')
    console.log(res)
     }).catch((el)=>{
-      this.openModal('Modal_verify_signup')
-  //  this.openModal('modal_join_tour')
-      this.closeModal('modal_signup_2')
+     
       console.log(el)
       alert("please ckeck your form")
 

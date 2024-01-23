@@ -23,7 +23,7 @@
       <div class="border m-3 rounded-3">
         <div class="row p-3">
           <div class="col-lg-2 col-md-2">
-            <img src="frontend/imgs/2ab37ca6249a1ff1defb3b3889df1069.png" class="rounded-3" width="100%" height="100%">
+            <img src="../../../public/frontend/imgs/2ab37ca6249a1ff1defb3b3889df1069.png" class="rounded-3" width="100%" height="100%">
           </div>
           <!--  -->
           <div class="col-lg-10 col-md-10">
@@ -43,7 +43,7 @@
         </div>
 
         <div class="col-lg-4 col-md-4">
-          <img src="frontend/imgs/card.PNG" alt="" width="130px" class="ps-5">
+          <img src="../../../public/frontend/imgs/card.png" alt="ss" width="130px" class="ps-5">
         </div>
 
 
@@ -66,8 +66,9 @@
 
     <div class="d-flex justify-content-between mb-5 pe-3">
       <div>
-        <img src="frontend/imgs/visa2.PNG" width="50px">
-        <img src="frontend/imgs/master.PNG" width="50px">
+        <img src='../../../public/frontend/imgs/visa.png' width="50px">
+        <img src="../../../public/frontend/imgs/master.png" width="50px">
+        
       </div>
       <label>
         <!-- id mycheckbox in check.js -->
@@ -82,7 +83,7 @@
     <div class="col-lg-12 col-md-12 mt-4 d-flex justify-content-between">
       <button class=" btn pt-3 pb-3 back rounded-5 fw-bold" > Back</button>
 
-      <button class=" btn pt-3 pb-3 back rounded-5 fw-bold check-out" data-bs-toggle="modal" data-bs-target="#myModal4"> Check out</button>
+      <button @click="Pusht()" class=" btn pt-3 pb-3 back rounded-5 fw-bold check-out"  > Check out</button>
      </div>
 
      <!-- The Modal -->
@@ -199,7 +200,7 @@
       <div class="book col-lg-4 col-md-12 border rounded-3 p-4 mt-4 ">
        <div class="row">
         <div class="col-lg-6 col-md-6 pe-0">
-          <img src="frontend/imgs/2ab37ca6249a1ff1defb3b3889df1069.png" class="imm" alt="">
+          <img src="../../../public/frontend/imgs/2ab37ca6249a1ff1defb3b3889df1069.png" class="imm" alt="">
         </div>
 
           <div class="col-lg-6 col-md-6 p-0">
@@ -269,8 +270,52 @@
 </template>
 
 <script>
-
+import axios from "axios";
 export default{
+  data() {
+    return {
+ 
+    tours:{},
+    approvedtours:{}
+    };
+  },
+  methods:{
+    Pusht(){
+       
+  axios.interceptors.request.use((config) => {
+  try {
+    config.headers.Authorization = `Bearer ${JSON.parse(localStorage.getItem('Authorization'))}`
+  } catch (error) {
+    config.headers.Authorization = `Bearer ${localStorage.getItem('Authorization')}`
+  }
+  config.headers.Accept = 'application/json'
+  // config.headers["Content-Type"] = "application/json";
+  return config
+})
+  axios.post(`/api/v1/tours/${this.$route.params.id }/booking/checkout`,{
+    paymentMethod:"visa or mastercard"
+  }).then((res) => {
+  
+
+console.log(res)
+}).catch((el)=>{
+
+console.log(el)
+
+
+})
+axios.get(`/api/v1/tours/${this.$route.params.id }/booking/checkout-session`).then((res) => {
+    
+  window.location.href = res.data.session.url
+
+}).catch((el)=>{
+
+console.log(el)
+
+
+})
+ }
+  },
     mounted() {
     const script = document.createElement('script');
     script.src = 'https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js';

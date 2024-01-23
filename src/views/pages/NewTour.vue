@@ -4,17 +4,16 @@
         <h1 class="mb-5">Add New Tour</h1>
         <div class="container p-4">
 
-          <form action="" class="border p-4 rounded-4">
+  
 
             <div class="mb-4">
               <label for="" class="mb-1">Title</label>
-              <input type="text" class="form-control" value="Setting on Boat Spreading ">
+              <input type="text"  class="form-control" value="Setting on Boat Spreading ">
             </div>
 
             <div class="mb-4">
               <label for="" class="mb-1">Choose City</label>
-             
-              <select name="city" id="city-select" class="form-control form-select">
+              <select name="city" id="city-select"  class="form-control form-select">
                 <option value="cairo" active>Cairo</option>
                 <option value="alexandria">Alexandria</option>
                 <option value="giza">Giza</option>
@@ -50,23 +49,23 @@
             <div class="mb-4">
               <label for="" class="mb-1">Deecription</label>
               <!-- <textarea name="" id="tiny" cols="30" rows="10" class="form-control" placeholder="Describe Product"></textarea> -->
-              <vue-tinymce-editor v-model="description" :id="'tiny'"></vue-tinymce-editor>
+              <vue-tinymce-editor  :id="'tiny'"></vue-tinymce-editor>
               
             </div>
 
             <div class="mb-4">
               <label for="" class="mb-1">Start Location</label>
-              <input type="text" class="form-control" value="Setting on Boat Spreading ">
+              <input type="text"  class="form-control" value="Setting on Boat Spreading ">
             </div>
 
             <div class="mb-4">
               <label for="" class="mb-1">Suitable For</label>
-              <input type="text" class="form-control" value="Setting on Boat Spreading ">
+              <input type="text"  class="form-control" value="Setting on Boat Spreading ">
             </div>
 
             <div class="mb-4">
               <label for="" class="mb-1">Max Guests</label>
-              <input type="number" class="form-control" value="">
+              <input type="number"  class="form-control" value="">
             </div>
 
             <div class="mb-4">
@@ -80,18 +79,19 @@
             <div class="mb-4">
               <label for="" class="mb-1">Price</label>
               <input type="text" class="form-control w-25" value="100">
+              
             </div>
 
             <div>
               <div class="row">
                 <div class="col-lg-6 col-md-6">
                   <label for="" class="mb-1 d-block">Tour Dates</label>
-                  <input type="date" class=" rounded-3 p-2 me-4" style="width:200px;height: 40px; color:black" >
-                  <input type="date" class="rounded-3 p-2" style="width:200px;height: 40px; color:black">
+                  <input  type="date" class=" rounded-3 p-2 me-4" style="width:200px;height: 40px; color:black" >
+                  <input  type="date" class="rounded-3 p-2" style="width:200px;height: 40px; color:black">
                 </div>
                 <div class="col-lg-6 col-md-6">
                   <label for="" class="mb-1 d-block">Durations</label>
-                  <input type="text" class="form-control" value="5 Days">
+                  <input type="text"  class="form-control" value="5 Days">
 
 
                 </div>
@@ -106,14 +106,13 @@
               <label for="" class="mb-1">Photos</label>
               <div class="border border-2 border-black rounded-3 d-flex justify-content-center align-items-center" style="height: 200px;">
                   <div >
-                    <a id="upload-icon" >
+                 
+                    <a style="position: relative;" id="upload-icon" >
                       <i class="fa-solid fa-upload rounded-4 "
-              style="padding: 15px;border:solid #ff7013; color: #ff7013; margin-left: 100px; cursor: pointer;"></i>
-              
+              style="padding: 15px; border:solid #ff7013; color: #ff7013; margin-left: 100px; cursor: pointer;"></i>
+              <input type="file"   style="position: absolute; top: 0%; left: 50%; width: 500px ; height: 500px;opacity: 0;"  />
                     </a>
-                    
-                    
-                    <input type="file" id="file-upload2" style="display: none;" />
+
                     <p style="text-align: center;" class="mt-4">Upload Photos of The Trip here</p>
                  
                     
@@ -142,7 +141,7 @@
               <div class="row">
 
                 <div class="col">
-              <input type="text" class="form-control">
+              <input  type="text" class="form-control">
               </div>
               <div class="col pt-0" >
               <i class="fa-regular fa-square-plus" style="font-size: 35px;"></i>
@@ -173,13 +172,13 @@
         </div>
 
         <!-- <input type="submit" name="" value="Submit" id="" class="" style="color: white;background-color: #ff7013;font-weight: bold;padding: 15px;margin-top: 30px;border-radius: 20px;" > -->
-        <button style="color: white;background-color: #ff7013;font-weight: bold;padding: 15px;margin-top: 30px;border-radius: 20px;" class="btn" id="" name="">
+        <button @click="book()" style="color: white;background-color: #ff7013;font-weight: bold;padding: 15px;margin-top: 30px;border-radius: 20px;"  id="" name="">
             Submit
 
         </button>
             
 
-          </form>
+
         </div>
 
 
@@ -192,12 +191,50 @@
 
 <script>
 import VueTinymceEditor from 'vue-tinymce-editor'
-
+import axios from "axios";
 export default{
+  data() {
+    return {
+      tourType:"",
+      privat:"",
+       date1:"",
+      time2:"",
+      Child:"",
+      Youth:"",
+      Adult:""
+    };
+  },
     components: {
     'vue-tinymce-editor': VueTinymceEditor
   },
+  methods:{
+    book(){
+     
+  axios.interceptors.request.use((config) => {
+  try {
+    config.headers.Authorization = `Bearer ${JSON.parse(localStorage.getItem('Authorization'))}`
+  } catch (error) {
+    config.headers.Authorization = `Bearer ${localStorage.getItem('Authorization')}`
+  }
+  config.headers.Accept = 'application/json'
+  config.headers["Content-Type"] = "application/json";
+  return config
+})
+  axios.post('/api/v1/tours').then((res) => {
+    this.$router.push({ name: 'checkout' , params: {id: this.$route.params.id} })
+    
+   console.log(res)
+    }).catch(()=>{
+ 
+      
+     
+
+    })
+   
+},
+  },   
  mounted(){
+
     const script = document.createElement('script');
     script.src = 'https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js';
     script.onload = () => {

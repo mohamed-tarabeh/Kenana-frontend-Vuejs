@@ -21,7 +21,7 @@
               <div class="card-header bg-white p-4 rounded-4">
                     <label>
                       <!-- id mycheckbox in check.js -->
-                      <input type="radio" id="myCheckbox" class="form-check-input rounded-5 border border-3 border-black" name="ch1" value="private"> Private
+                      <input type="radio" id="myCheckbox" @click="privat = 'private'" class="form-check-input rounded-5 border border-3 border-black" name="ch1" value="private"> Private
                     </label>
               </div>
               <div class="card-body bg-light target-div">
@@ -31,13 +31,13 @@
                 <div class="row">
                   <div class="col-lg-6 col-md-12">
                     <span class="ms-5 me-4">Date</span>
-                    <input type="date"  class="border-0 p-2 rounded-4 datee">
+                    <input type="date" v-model="date1" class="border-0 p-2 rounded-4 datee">
                   </div>
     
                   <div class="col-lg-6 col-md-12">
     
                     <span class="ms-5 me-4">Time</span>
-                    <input type="time"  class="border-0 p-2 rounded-4 datee">
+                    <input type="time"  v-model="time2" class="border-0 p-2 rounded-4 datee">
                   </div>
                 </div>
                 <!-- end inner row1 -->
@@ -45,18 +45,33 @@
     
                 <!--inner row 2 -->
                 <div class="row">
-                  <div class="col-lg-6 col-md-12">
-                    <label class="ms-5">
-                      <input type="radio" class="form-check-input rounded-5 border border-3 border-black" name="r1"> Adult (+18 Years)
-                    </label>
-                  </div>
+                  <div class="col-lg-4 col-md-12 ">
+                <label class="ms-5 lab">
+                  <input type="radio" class="form-check-input rounded-5 border border-3 border-black" name="r2"> Adult (+18 Years)
+                </label>
+                <p align="center" class="mt-3">
+                <input type="number" style="color: red !important;" v-model="Adult" class="w-50 rounded-3 text-center" placeholder="1"  min="18" >
+              </p>
+              </div>
     
-                  <div class="col-lg-6 col-md-12">
-    
-                    <label class="ms-5">
-                      <input type="radio" class="form-check-input rounded-5 border border-3 border-black" name="r1"> Youth (13-17 Years)
-                    </label>
-                </div>
+                  <div class="col-lg-4 col-md-12 ">
+  
+  <label class="ms-5 lab">
+    <input type="radio" class="form-check-input rounded-5 border border-3 border-black" name="r3"> Youth (13-17 Years)
+  </label>
+  <p align="center" class="mt-3">
+    <input type="number" style="color: red !important;" v-model="Youth"   class="w-50 rounded-3 text-center" placeholder="1"  min="13" max="17">
+  </p>
+</div>
+<div class="col-lg-4 col-md-12 ">
+  
+  <label class="ms-5 lab">
+    <input type="radio" class="form-check-input rounded-5 border border-3 border-black" name="r3"> Child (0-12)
+  </label>
+  <p align="center" class="mt-3">
+    <input style="color: red !important;" type="number" v-model="Child" class="w-50 rounded-3 text-center" placeholder="1" min="0" max="12">
+  </p>
+</div>
     
                 </div>
                 <!-- end inner row2 -->
@@ -75,7 +90,7 @@
           <div class="card-header bg-white p-4 rounded-4">
                 <label>
                   <!-- id mycheckbox3 in check.js -->
-                  <input type="radio" id="myCheckbox2" class="form-check-input rounded-5 border border-3 border-black" name="ch1" value="family"> Family
+                  <input type="radio" id="myCheckbox2" @click="privat = 'family'" class="form-check-input rounded-5 border border-3 border-black" name="ch1" value="family"> Family
                 </label>
           </div>
           <div class="card-body bg-light target-div2">
@@ -85,13 +100,13 @@
             <div class="row">
               <div class="col-lg-6 col-md-12">
                 <span class="ms-5 me-4">Date</span>
-                <input type="date"  class="border-0 p-2 rounded-4 datee">
+                <input type="date" v-model="date1" class="border-0 p-2 rounded-4 datee">
               </div>
 
               <div class="col-lg-6 col-md-12">
 
                 <span class="ms-5 me-4">Time</span>
-                <input type="time"  class="border-0 p-2 rounded-4 datee">
+                <input type="time" v-model="time2" class="border-0 p-2 rounded-4 datee">
               </div>
             </div>
             <!-- end inner row1 -->
@@ -104,7 +119,7 @@
                   <input type="radio" class="form-check-input rounded-5 border border-3 border-black" name="r2"> Adult (+18 Years)
                 </label>
                 <p align="center" class="mt-3">
-                <input type="number" class="w-50 rounded-3 text-center" placeholder="1">
+                <input type="number" style="color: red !important;" v-model="Adult" class="w-50 rounded-3 text-center" placeholder="1" min="18" >
               </p>
               </div>
 
@@ -114,7 +129,7 @@
                   <input type="radio" class="form-check-input rounded-5 border border-3 border-black" name="r2"> Youth (13-17 Years)
                 </label>
                 <p align="center" class="mt-3">
-                  <input type="number" class="w-50 rounded-3 text-center" placeholder="1">
+                  <input type="number" style="color: red !important;" v-model="Youth" class="w-50 rounded-3 text-center" placeholder="1"  min="13" max="17">
                 </p>
               </div>
 
@@ -126,7 +141,7 @@
                 <input type="radio" class="form-check-input rounded-5 border border-3 border-black" name="r2"> Child (0-12)
               </label>
               <p align="center" class="mt-3">
-                <input type="number" class="w-50 rounded-3 text-center" placeholder="1">
+                <input type="number" style="color: red !important;" v-model="Child" class="w-50 rounded-3 text-center" placeholder="1" min="0" max="12">
               </p>
           </div>
 
@@ -143,7 +158,7 @@
             <div class="card-header bg-white p-4 rounded-4">
                   <label>
                     <!-- id mycheckbox3 in check.js -->
-                    <input type="radio" id="myCheckbox3" class="form-check-input rounded-5 border border-3 border-black" name="ch1" value="collect"> Collective
+                    <input type="radio" id="myCheckbox3" @click="privat = 'Collective'" class="form-check-input rounded-5 border border-3 border-black" name="ch1" value="collect"> Collective
                   </label>
             </div>
             <div class="card-body bg-light target-div3">
@@ -153,13 +168,13 @@
               <div class="row">
                 <div class="col-lg-6 col-md-12">
                   <span class="ms-5 me-4">Date</span>
-                  <input type="date"  class="border-0 p-2 rounded-4 datee">
+                  <input type="date" v-model="date1" class="border-0 p-2 rounded-4 datee">
                 </div>
   
                 <div class="col-lg-6 col-md-12">
   
                   <span class="ms-5 me-4">Time</span>
-                  <input type="time"  class="border-0 p-2 rounded-4 datee">
+                  <input type="time" v-model="time2" style="color: red !important;"   class="border-0 p-2 rounded-4 datee" >
                 </div>
               </div>
               <!-- end inner row1 -->
@@ -169,20 +184,20 @@
               <div class="row">
                 <div class="col-lg-4 col-md-12 ">
                   <label class="ms-5 lab">
-                    <input type="radio" class="form-check-input rounded-5 border border-3 border-black" name="r3"> Adult (+18 Years)
+                    <input type="radio" class="form-check-input rounded-5 border border-3 border-black" name="r3" > Adult (+18 Years)
                   </label>
                   <p align="center" class="mt-3">
-                  <input type="number" class="w-50 rounded-3 text-center" placeholder="1">
+                  <input type="number" style="color: red !important;" v-model="Adult"  class="w-50 rounded-3 text-center" placeholder="1" min="18" >
                 </p>
                 </div>
   
                 <div class="col-lg-4 col-md-12 ">
   
                   <label class="ms-5 lab">
-                    <input type="radio" class="form-check-input rounded-5 border border-3 border-black" name="r3"> Youth (13-17 Years)
+                    <input type="radio" class="form-check-input rounded-5 border border-3 border-black" name="r3" > Youth (13-17 Years)
                   </label>
                   <p align="center" class="mt-3">
-                    <input type="number" class="w-50 rounded-3 text-center" placeholder="1">
+                    <input type="number" style="color: red !important;" v-model="Youth"   class="w-50 rounded-3 text-center" placeholder="1" min="13" max="17">
                   </p>
                 </div>
   
@@ -191,10 +206,10 @@
               <div class="col-lg-4 col-md-12 ">
   
                 <label class="ms-5 lab">
-                  <input type="radio" class="form-check-input rounded-5 border border-3 border-black" name="r3"> Child (0-12)
+                  <input type="radio" class="form-check-input rounded-5 border border-3 border-black" name="r3" min="0" max="12"> Child (0-12)
                 </label>
                 <p align="center" class="mt-3">
-                  <input type="number" class="w-50 rounded-3 text-center" placeholder="1">
+                  <input style="color: red !important;" type="number" v-model="Child" class="w-50 rounded-3 text-center" placeholder="1" min="0" max="12">
                 </p>
             </div>
   
@@ -207,9 +222,9 @@
           
            <div class="col-lg-12 col-md-12 mt-4 d-flex justify-content-between">
             <button class=" btn pt-3 pb-3 back rounded-5 fw-bold" > Back</button>
-         <routerLink :to="{name:'checkout'}">
-            <button class=" btn pt-3 pb-3 back rounded-5 fw-bold check-out" > Check out</button>
-          </routerLink>
+         <!-- <routerLink :to="{name:'checkout'}"> -->
+            <button @click="book()" class=" btn pt-3 pb-3 back rounded-5 fw-bold check-out" > Check out</button>
+          <!-- </routerLink> -->
            </div>
                   
   </div>
@@ -306,11 +321,59 @@
 // import HeaderComp2 from '@/components/HeaderComp2.vue';
 // import HeaderComp from '@/components/HeaderComp.vue';
 // import FooterComp from '@/components/FooterComp.vue';
+import axios from "axios";
 export default{
-    // components:{HeaderComp},
-  name:'MasterPage',
+  data() {
+    return {
+      tourType:"",
+      privat:"",
+       date1:"",
+      time2:"",
+      Child:"",
+      Youth:"",
+      Adult:""
+    };
+  },
 
+  methods:{
 
+    book(){
+      let elements = document.getElementsByName("ch1");
+      console.log(elements[0].value)
+      console.log(this.tourType)
+ 
+  axios.interceptors.request.use((config) => {
+  try {
+    config.headers.Authorization = `Bearer ${JSON.parse(localStorage.getItem('Authorization'))}`
+  } catch (error) {
+    config.headers.Authorization = `Bearer ${localStorage.getItem('Authorization')}`
+  }
+  config.headers.Accept = 'application/json'
+  // config.headers["Content-Type"] = "application/json";
+  return config
+})
+  axios.post(`/api/v1/tours/${this.$route.params.id}/booking/booking-details`,{
+    tourType:this.privat,
+    date:this.date1,
+    time:this.time2,
+    participants:{
+        adults: this.Adult,
+        youth:this.Youth,
+        children:this.Child
+    }
+  }).then((res) => {
+    this.$router.push({ name: 'checkout' , params: {id: this.$route.params.id} })
+    
+   console.log(res)
+    }).catch(()=>{
+ 
+      alert("please check your form")
+     
+
+    })
+   
+},
+  },
   mounted(){
     const script = document.createElement('script');
     script.src = 'https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js';

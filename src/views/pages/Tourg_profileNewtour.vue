@@ -24,7 +24,7 @@
 
             <tr class="d-flex justify-content-center border-top-0">
               <td>
-                <h2>Kareem Ahmed</h2>
+                <h2>{{ tours.fullName }}</h2>
               </td>
             </tr>
 
@@ -95,7 +95,7 @@
               <tr>
                 <td class="pb-4">
                   <label for="" class="form-label">Name</label>
-                  <input type="text" class="form-control border-0" value="Kareem Ahmed" readonly>
+                  <input type="text" class="form-control border-0" v-model="tours.fullName" >
                 </td>
 
                 <td class="d-flex justify-content-end">
@@ -146,7 +146,7 @@
               <tr>
                 <td class="pb-4">
                   <label for="" class="form-label">E-mail</label>
-                  <input type="text" class="form-control border-0" value="Kareem@gmail.com" readonly>
+                  <input type="text" class="form-control border-0" v-model="tours.email" >
                 </td>
 
                 <td class="d-flex justify-content-end">
@@ -196,7 +196,7 @@
               <tr>
                 <td class="pb-4">
                   <label for="" class="form-label">Phone Number</label>
-                  <input type="text" class="form-control border-0" value="+2 000-000-000" readonly>
+                  <input type="text" class="form-control border-0" v-model="tours.phoneNumber">
                 </td>
                 <td class="d-flex justify-content-end">
                   <button class="change btn rounded-1 ps-4 pe-4 p-2 mt-4" type="button" data-bs-toggle="modal"
@@ -244,7 +244,7 @@
               <tr>
                 <td class="pb-4">
                   <label for="" class="form-label">Description</label>
-                  <textarea rows="3" class="form-control border-0 " readonly>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus laudantium odio saepe voluptatum, eligendi excepturi! Distinctio, ratione aspernatur porro saepe 
+                  <textarea rows="8" class="form-control border-0 "  >{{ tours.description }}
               </textarea>
                 </td>
 
@@ -294,7 +294,7 @@
               <tr>
                 <td class="pb-4">
                   <label for="" class="form-label">City</label>
-                  <input type="text" class="form-control border-0" value="Cairo" readonly>
+                  <input type="text" class="form-control border-0" v-model="tours.city" >
                 </td>
                 <td class="d-flex justify-content-end">
                   <button class="change btn rounded-1 ps-4 pe-4 p-2 mt-4" type="button" data-bs-toggle="modal"
@@ -343,7 +343,7 @@
               <tr>
                 <td class="pb-4">
                   <label for="" class="form-label">Language</label>
-                  <input type="text" class="form-control border-0" value="English" readonly>
+                  <input type="text" class="form-control border-0" v-model="tours.language">
                 </td>
 
                 <td class="d-flex justify-content-end">
@@ -388,8 +388,8 @@
                   </div>
                 </td>
 
-                
               </tr>
+              <button onclick="updater"  style="background-color: #ff7013; color: white; width: 100px; padding:15px ; margin-left:300px;border-radius:15px">update</button>
 
 
             </table>
@@ -1563,15 +1563,40 @@
 
 
 <script>
-
+import axios from "axios";
 
 export default {
+  data() {
+    return {
+ 
+    tours:{},
+    approvedtours:{}
+    };
+  },
   beforeUnmount() {
     window.removeEventListener('resize', this.handleResize);
   },
 
   mounted() {
+    axios.interceptors.request.use((config) => {
+  try {
+    config.headers.Authorization = `Bearer ${JSON.parse(localStorage.getItem('Authorization'))}`
+  } catch (error) {
+    config.headers.Authorization = `Bearer ${localStorage.getItem('Authorization')}`
+  }
+  config.headers.Accept = 'application/json'
+  // config.headers["Content-Type"] = "application/json";
+  return config
+})
+    axios.get(`/api/v1/users/getMe`).then((res) => {
+      this.tours=res.data.data
+console.log(res)
+}).catch((el)=>{
 
+console.log(el)
+
+
+})
     window.addEventListener('resize', this.handleResize);
     
 
@@ -1635,6 +1660,28 @@ document.getElementById('btn-finance').addEventListener('click',function(){
     document.head.appendChild(script);
   },
   methods: {
+    updater(){
+    axios.interceptors.request.use((config) => {
+  try {
+    config.headers.Authorization = `Bearer ${JSON.parse(localStorage.getItem('Authorization'))}`
+  } catch (error) {
+    config.headers.Authorization = `Bearer ${localStorage.getItem('Authorization')}`
+  }
+  config.headers.Accept = 'application/json'
+  // config.headers["Content-Type"] = "application/json";
+  return config
+})
+    axios.put(`/api/v1/users/updateMe`,this.tours).then((res) => {
+      location.reload()
+console.log(res)
+}).catch((el)=>{
+
+console.log(el)
+
+
+})
+  },
+
     toggleTab(tabIndex) {
       let tabs = document.getElementsByClassName("tab");
       for (let i = 0; i < tabs.length; i++) {

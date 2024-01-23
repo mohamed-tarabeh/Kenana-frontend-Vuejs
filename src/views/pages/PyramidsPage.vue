@@ -6,10 +6,10 @@
 <!-- Gallery -->
 <div class="container row mb-5">
   <div class="col">
-    <h2>Pyramids</h2>
+    <h2>{{ tours.startLocation }}</h2>
     <h3>
-    <i class="fa-solid fa-star"></i> <span>5 (2 Reviews)</span> &nbsp; &nbsp;
-    <i class="fa-solid fa-location-dot me-2"></i>  <span>Giza</span>
+    <i class="fa-solid fa-star"></i> <span>{{  tours.ratingsAverage}} ({{ tours.ratingsQuantity }} Reviews)</span> &nbsp; &nbsp;
+    <i class="fa-solid fa-location-dot me-2"></i>  <span>{{ tours.city }}</span>
   </h3>
   </div>
   <div class="col d-flex justify-content-end">
@@ -138,9 +138,9 @@
            
 
           </table>
-          <routerLink :to="{name:'book'}">
-            <button class="book_btn w-100 rounded-5 p-2">Book Now</button>
-          </routerLink>
+          
+            <button @click="push()" class="book_btn w-100 rounded-5 p-2">Book Now</button>
+       
 
       </div>
       
@@ -225,9 +225,9 @@
       <i class="fa-solid fa-star"></i> <span>4 - 20 Reviews</span>
     </h2>
     <!-- row 1 -->
-    <div class="row mb-4" id="rep">
+    <div  class="row mb-4" id="rep">
       <!-- col 1 -->
-      <div class="col-lg-6 col-md-12">
+      <div v-for="x in  tours.reviews" :key="x" class="col-lg-6 col-md-12">
         
         <!-- inner col  -->
         <div class="row mt-4">
@@ -235,15 +235,13 @@
                <img src="frontend/imgs/clients_openion.PNG" alt="" class="rounded-circle border border-2" width="80px">
                   </div>
               <div class="col-10 ps-5">
-               <h5 class="fw-bold ps-3 pt-2">Ahmed Mohamed</h5>
+               <h5 class="fw-bold ps-3 pt-2">{{ x.user.fullName }}</h5>
                 <!-- <strong>5.0 <i class="fa-solid fa-star"></i></strong> -->
                 <span class="small text-secondary ps-3 ">05/27/2023</span>
               </div>
           </div>
 
-          <div>
-            <!-- <script src="js/script_stars.js"></script> -->
-          </div>
+         
           <div class="review_par">
            <p id="starss" class="ps-3 mt-2 pb-0"></p>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis necessitatibus consequatur hic quo at est tempora deserunt voluptatem quaerat, commodi voluptatibus excepturi doloribus rem aliquam, laboriosam, sit mollitia! Et,
@@ -256,97 +254,16 @@
 
 
 
-     <!-- col 1 -->
-      <div class="col-lg-6 col-md-12">
-        
-        <!-- inner col  -->
-        <div class="row mt-4">
-            <div class="col-1">
-               <img src="frontend/imgs/clients_openion.PNG" alt="" class="rounded-circle border border-2" width="80px">
-                  </div>
-              <div class="col-10 ps-5">
-                <h5 class="fw-bold ps-3 pt-2">Ahmed Mohamed</h5>
-                <!-- <strong>5.0 <i class="fa-solid fa-star"></i></strong> -->
-                <span class="small text-secondary ps-3 ">05/27/2023</span>
-              </div>
-          </div>
-
-          <div>
-          </div>
-          <div class="review_par mb-3">
-            <p id="starss" class="ps-3 mt-2 pb-0"></p>
-
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis necessitatibus consequatur hic quo at est tempora deserunt voluptatem quaerat, commodi voluptatibus excepturi doloribus rem aliquam, laboriosam, sit mollitia! Et,
-          </div>
-          
-
-          
-       
-      </div>
-      <!-- end col 2 -->
 
     </div>
-    <!-- end row1 -->
+    
     
 
 
     <!-- row 2 -->
     <div class="row mb-4">
-      <!-- col 1 -->
-      <div class="col-lg-6 col-md-12">
-        
-        <!-- inner col  -->
-        <div class="row mt-4">
-            <div class="col-1">
-               <img src="frontend/imgs/clients_openion.PNG" alt="" class="rounded-circle border border-2" width="80px">
-                  </div>
-              <div class="col-10 ps-5">
-                <h5 class="fw-bold ps-3 pt-2">Ahmed Mohamed</h5>
-                <!-- <strong>5.0 <i class="fa-solid fa-star"></i></strong> -->
-                <span class="small text-secondary ps-3 ">05/27/2023</span>
-              </div>
-          </div>
-
-          <div>
-           
-          </div>
-          <div class="review_par">
-            <p id="starss" class="ps-3 mt-2 pb-0"></p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis necessitatibus consequatur hic quo at est tempora deserunt voluptatem quaerat, commodi voluptatibus excepturi doloribus rem aliquam, laboriosam, sit mollitia! Et,
-          </div>
-          
-      </div>
-
-     <!-- col 1 -->
-      <div class="col-lg-6 col-md-12">
-        
-        <!-- inner col  -->
-        <div class="row mt-4">
-            <div class="col-1">
-               <img src="frontend/imgs/clients_openion.PNG" alt="" class="rounded-circle border border-2" width="80px">
-                  </div>
-              <div class="col-10 ps-5">
-                <h5 class="fw-bold ps-3 pt-2">Ahmed Mohamed</h5>
-                <!-- <strong>5.0 <i class="fa-solid fa-star"></i></strong> -->
-                <span class="small text-secondary ps-3 ">05/27/2023</span>
-              </div>
-          </div>
-
-          <div>
-          </div>
-          <div class="review_par mb-3">
-            <p id="starss" class="ps-3 mt-2 pb-0"></p>
-
-            
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis necessitatibus consequatur hic quo at est tempora deserunt voluptatem quaerat, commodi voluptatibus excepturi doloribus rem aliquam, laboriosam, sit mollitia! Et,
-          </div>
-          
-
-          
-       
-      </div>
-      <!-- end col 2 -->
-
+     
+   
     </div>
     <!-- end row 2 -->
   </div>
@@ -607,6 +524,11 @@ export default{
     tours:{},
     approvedtours:{}
     };
+  },
+  methods:{
+    push(){
+      this.$router.push({ name: 'book-page' , params: {id:this.$route.params.id } })
+    }
   },
   mounted() {
     axios.get(`/api/v1/tours/${this.$route.params.id }`).then((res) => {
