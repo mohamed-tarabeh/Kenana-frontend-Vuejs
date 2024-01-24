@@ -244,7 +244,8 @@
               <tr>
                 <td class="pb-4">
                   <label for="" class="form-label">Description</label>
-                  <textarea rows="8" class="form-control border-0 "  >{{ tours.description }}
+                  <textarea rows="8" class="form-control border-0" v-model="tours.description"  >
+                  
               </textarea>
                 </td>
 
